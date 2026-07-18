@@ -1,6 +1,6 @@
 # SmackMe
 
-A rebuild of the old iOS rhythm game SmackMe (originally released as TwistMe), running on modern 64-bit iPhones.
+A reboot of the old iOS rhythm game SmackMe (originally released as TwistMe), running on modern 64-bit iPhones.
 
 ## About
 
