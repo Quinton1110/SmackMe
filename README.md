@@ -8,7 +8,7 @@ This rebuild began in March 2026 as an experiment with Claude Code, recreating t
 
 ## 🕹️ For Those Who Just Want to Play
 
-If you only want to play and have no interest in building anything, you can sideload the prebuilt app straight onto your iPhone:
+If you only want to play, you can sideload the prebuilt app straight onto your iPhone:
 
 1. Download the latest SmackMe unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page.
 2. Install a sideloading tool on your computer, such as [AltStore](https://altstore.io/) or [Sideloadly](https://sideloadly.io/).
