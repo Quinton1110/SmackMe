@@ -2,6 +2,10 @@
 
 A faithful recreation of the classic iOS rhythm game "SmackMe" (originally "TwistMe"), rebuilt from scratch for modern 64-bit iOS devices.
 
+## About This Project
+
+This rebuild began in March 2026 as an experiment with Claude Code, recreating the classic accessible game from the ground up in modern Swift. It's now open source so anyone can pitch in and help bring SmackMe back to modern iOS. Contributions, fixes, and pull requests are all welcome — let's bring this classic back together.
+
 ## 🎮 What is SmackMe?
 
 SmackMe is a fast-paced rhythm game where you respond to on-screen commands by performing physical gestures on your iPhone. As the tempo increases, the challenge intensifies!
