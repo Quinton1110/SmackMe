@@ -30,7 +30,7 @@ Note: with a free Apple ID, sideloaded apps stop working after 7 days and need t
 
 ## 🎮 What is SmackMe?
 
-SmackMe is a fast-paced rhythm game where you respond to on-screen commands by performing physical gestures on your iPhone. As the tempo increases, the challenge intensifies!
+SmackMe is a fast-paced rhythm game where you respond to commands with physical gestures on your iPhone. The faster the tempo climbs, the harder it gets.
 
 ### Game Actions
 - **Smack** - Tap the screen
