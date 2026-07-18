@@ -29,7 +29,7 @@ class GestureManager: NSObject {
 
     // Motion cooldown: after ANY gesture fires, block motion gestures for this
     // duration. Prevents cross-type interference (e.g. tap jolt triggering shake).
-    // Touch gestures (tap/pinch) are deliberate and always allowed — they must
+    // Touch gestures (tap/pinch) are deliberate and always allowed - they must
     // cause game over if the player touches during freeze.
     private var lastGestureTime: Date?
     private let motionCooldown: TimeInterval = 0.6
@@ -63,7 +63,7 @@ class GestureManager: NSObject {
 
     @objc private func handleTap(_ recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
-            // Always fire — touching during freeze must cause game over
+            // Always fire - touching during freeze must cause game over
             cancelFreezeDetection()
             markGestureFired()
             delegate?.gestureDetected(.smack)
@@ -121,7 +121,7 @@ class GestureManager: NSObject {
         // At rest (any orientation), total accel ≈ 1.0g (just gravity).
         // Lifting the phone adds upward force, briefly pushing total accel > 1.0g.
         // Threshold of 1.3g detects a moderate upward lift regardless of phone angle.
-        // No global cooldown — the VC filters by expected action.
+        // No global cooldown - the VC filters by expected action.
         let totalAccel = sqrt(acceleration.x * acceleration.x +
                               acceleration.y * acceleration.y +
                               acceleration.z * acceleration.z)
@@ -139,7 +139,7 @@ class GestureManager: NSObject {
         let deltaY = abs(acceleration.y - last.y)
         let deltaZ = abs(acceleration.z - last.z)
 
-        // Forgiving threshold — normal hand tremor can exceed 0.05 easily
+        // Forgiving threshold - normal hand tremor can exceed 0.05 easily
         let movementThreshold: Double = 0.15
 
         if deltaX < movementThreshold && deltaY < movementThreshold && deltaZ < movementThreshold {

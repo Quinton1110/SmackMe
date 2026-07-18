@@ -198,7 +198,7 @@ class GameViewController: UIViewController {
     private func setupGame() {
         gameEngine = GameEngine(mode: mode, playerCount: playerCount)
 
-        // Engine calls this on timeout — handleGameOver handles the fail sound chain
+        // Engine calls this on timeout - handleGameOver handles the fail sound chain
         gameEngine.onActionTimeout = nil
     }
 
@@ -250,7 +250,7 @@ class GameViewController: UIViewController {
     }
 
     private func setupBindings() {
-        // Action display — show animation and play audio cue
+        // Action display - show animation and play audio cue
         gameEngine.$currentAction
             .sink { [weak self] action in
                 self?.updateUI(for: action)
@@ -275,7 +275,7 @@ class GameViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        // Level changes — update background image and label
+        // Level changes - update background image and label
         gameEngine.$currentLevel
             .removeDuplicates()
             .sink { [weak self] level in
@@ -296,7 +296,7 @@ class GameViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        // Game state changes — controls music and game flow
+        // Game state changes - controls music and game flow
         gameEngine.$gameState
             .removeDuplicates()
             .sink { [weak self] state in
@@ -440,7 +440,7 @@ class GameViewController: UIViewController {
                 }
             }
         } else {
-            // Only one player was active, and they completed — shouldn't happen
+            // Only one player was active, and they completed - shouldn't happen
             // but handle gracefully
             handleMultiplayerComplete()
         }
@@ -562,7 +562,7 @@ class GameViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    // MARK: - Game Complete (single player — all levels beaten)
+    // MARK: - Game Complete (single player - all levels beaten)
 
     private func handleGameComplete() {
         guard presentedViewController == nil else { return }
@@ -756,7 +756,7 @@ extension GameViewController: GestureManagerDelegate {
             // across consecutive freezes (avoids timer-jitter-induced beat skips).
             gameEngine.continueAfterAction(minBeatGap: 0.5)
         } else {
-            // Wrong action — game over.
+            // Wrong action - game over.
             // handleGameOver is triggered by the $gameState binding and handles
             // the full audio chain: fail.wav → newhighscore.wav → high score music.
         }

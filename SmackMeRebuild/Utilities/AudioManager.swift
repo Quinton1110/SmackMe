@@ -45,7 +45,7 @@ final class AudioManager: NSObject, AVAudioPlayerDelegate {
             }
         }
 
-        // No extension match — try the filename as-is with each extension
+        // No extension match - try the filename as-is with each extension
         for ext in supportedExtensions {
             if let url = Bundle.main.url(forResource: fileName, withExtension: ext) {
                 return url
@@ -113,7 +113,7 @@ final class AudioManager: NSObject, AVAudioPlayerDelegate {
         feedbackCompletion = nil
     }
 
-    // MARK: - Action Cue (robot voice: "Smack me!", etc.) — one at a time
+    // MARK: - Action Cue (robot voice: "Smack me!", etc.) - one at a time
 
     /// Play the BPM-matched cue file at its recorded speed.
     func playActionCue(_ soundName: String) {

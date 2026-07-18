@@ -51,7 +51,7 @@ class GameEngine: ObservableObject {
     }
 
     /// Time the player has to respond to each action.
-    /// 6 beats at the current BPM — scales with difficulty so higher BPMs
+    /// 6 beats at the current BPM - scales with difficulty so higher BPMs
     /// are genuinely harder (e.g. 3.6s at 100 BPM, 1.0s at 360 BPM).
     var actionDeadline: TimeInterval {
         return currentLevelConfig.beatInterval * 6
@@ -168,7 +168,7 @@ class GameEngine: ObservableObject {
         let musicTime = AudioManager.shared.musicCurrentTime
         let currentBeat = musicTime / beatInterval
         // Snap to the next beat boundary that's at least minBeatGap beats away.
-        // With minBeatGap=0.5, actual gap ranges from 0.5–1.5 beats (avg ~1 beat),
+        // With minBeatGap=0.5, actual gap ranges from 0.5-1.5 beats (avg ~1 beat),
         // preventing the 2-beat gaps that occurred with minBeatGap=1.0.
         let targetBeat = ceil(currentBeat + minBeatGap)
         let targetTime = targetBeat * beatInterval
@@ -226,13 +226,13 @@ class GameEngine: ObservableObject {
         timer?.invalidate()
 
         if action == expectedAction {
-            // Correct — 1 point per correct action
+            // Correct - 1 point per correct action
             score += 1
             print("[GameEngine] CORRECT: \(action.rawValue) +1pt (total=\(score)) remaining=\(actionsRemainingInLevel)")
             currentAction = nil
             return true
         } else {
-            // Wrong action — game over
+            // Wrong action - game over
             print("[GameEngine] WRONG: got \(action.rawValue), expected \(expectedAction.rawValue) → GAME OVER")
             currentAction = nil
             endGame()
@@ -245,7 +245,7 @@ class GameEngine: ObservableObject {
     private func handleTimeout() {
         guard gameState == .playing else { return }
 
-        // Player didn't respond in time — game over
+        // Player didn't respond in time - game over
         currentAction = nil
         onActionTimeout?()
         endGame()

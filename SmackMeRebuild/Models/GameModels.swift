@@ -133,15 +133,15 @@ enum GameMode: String {
 
         switch self {
         case .threeActionsNormal:
-            // 6 levels: 100–220
+            // 6 levels: 100-220
             bpms =    [100, 140, 160, 180, 200, 220]
             actions = [  5,  10,  13,  15,  17,  22]
         case .fourActionsNormal:
-            // 7 levels: 180–300
+            // 7 levels: 180-300
             bpms =    [180, 200, 220, 240, 260, 280, 300]
             actions = [ 16,  18,  20,  22,  22,  24,  28]
         case .fourActionsInsane:
-            // 7 levels: 240–360
+            // 7 levels: 240-360
             bpms =    [240, 260, 280, 300, 320, 340, 360]
             actions = [ 20,  26,  28,  30,  30,  32,  34]
         case .marathon:
