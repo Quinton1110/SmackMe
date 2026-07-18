@@ -8,15 +8,25 @@ This rebuild began in March 2026 as an experiment with Claude Code, recreating t
 
 ## 🕹️ For Those Who Just Want to Play
 
-If you only want to play, you can sideload the prebuilt app straight onto your iPhone:
+If you only want to play, you can sideload the prebuilt app straight onto your iPhone. First download the latest SmackMe unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page, then use one of the tools below.
 
-1. Download the latest SmackMe unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page.
-2. Install a sideloading tool on your computer, such as [AltStore](https://altstore.io/) or [Sideloadly](https://sideloadly.io/).
-3. Connect your iPhone, open the tool, and sideload the IPA using your Apple ID.
+### Option A: AltStore (auto refreshes over Wi-Fi)
+
+1. Install AltServer on your Mac or PC from [altstore.io](https://altstore.io/), then use it to install AltStore onto your iPhone.
+2. On your iPhone, open AltStore, go to My Apps, tap the plus button in the corner, and choose the SmackMe IPA you downloaded.
+3. Sign in with your Apple ID when prompted.
+4. Wait for the install to finish, then launch SmackMe.
+5. Keep AltServer running on your computer so AltStore can refresh the app automatically before it expires.
+
+### Option B: Sideloadly (simple one time install)
+
+1. Install Sideloadly on your Mac or PC from [sideloadly.io](https://sideloadly.io/).
+2. Connect your iPhone with a cable and open Sideloadly.
+3. Drag the SmackMe IPA into Sideloadly, enter your Apple ID, and click Start.
 4. On your iPhone, open Settings, then General, then VPN and Device Management, and trust your developer profile.
 5. Launch SmackMe and play.
 
-Note: with a free Apple ID, sideloaded apps keep working for 7 days before they need a refresh. AltStore can refresh automatically over Wi-Fi so it stays installed.
+Note: with a free Apple ID, sideloaded apps stop working after 7 days and need to be reinstalled. A paid Apple Developer account extends that to a full year.
 
 ## 🎮 What is SmackMe?
 
