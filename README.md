@@ -6,6 +6,18 @@ A faithful recreation of the classic iOS rhythm game "SmackMe" (originally "Twis
 
 This rebuild began in March 2026 as an experiment with Claude Code, recreating the classic accessible game from the ground up in modern Swift. It's now open source so anyone can pitch in and help bring SmackMe back to modern iOS. Contributions, fixes, and pull requests are all welcome - let's bring this classic back together.
 
+## 🕹️ For Those Who Just Want to Play
+
+If you only want to play and have no interest in building anything, you can sideload the prebuilt app straight onto your iPhone:
+
+1. Download the latest SmackMe unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page.
+2. Install a sideloading tool on your computer, such as [AltStore](https://altstore.io/) or [Sideloadly](https://sideloadly.io/).
+3. Connect your iPhone, open the tool, and sideload the IPA using your Apple ID.
+4. On your iPhone, open Settings, then General, then VPN and Device Management, and trust your developer profile.
+5. Launch SmackMe and play.
+
+Note: with a free Apple ID, sideloaded apps keep working for 7 days before they need a refresh. AltStore can refresh automatically over Wi-Fi so it stays installed.
+
 ## 🎮 What is SmackMe?
 
 SmackMe is a fast-paced rhythm game where you respond to on-screen commands by performing physical gestures on your iPhone. As the tempo increases, the challenge intensifies!
