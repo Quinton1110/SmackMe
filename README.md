@@ -1,177 +1,83 @@
-# SmackMe - Rebuilt for 64-bit iOS
+# SmackMe
 
-A faithful recreation of the classic iOS rhythm game "SmackMe" (originally "TwistMe"), rebuilt from scratch for modern 64-bit iOS devices.
+A rebuild of the old iOS rhythm game SmackMe (originally released as TwistMe), running on modern 64-bit iPhones.
 
-## About This Project
+## About
 
-This rebuild began in March 2026 as an experiment with Claude Code, recreating the classic game from the ground up in modern Swift. It's now open source so anyone can pitch in and help bring SmackMe back to modern iOS. Contributions, fixes, and pull requests are all welcome - let's bring this classic back together.
+This started in March 2026 as an experiment with Claude Code, rebuilding the game from scratch in modern Swift since no original source code was available. It's open source now so anyone who remembers the game can help bring it back. Contributions, fixes, and pull requests are welcome.
 
-## 🕹️ For Those Who Just Want to Play
+The game plays but it isn't perfect yet. Check the open issues for what still needs work.
 
-If you only want to play, you can sideload the prebuilt app straight onto your iPhone. First download the latest SmackMe unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page, then use one of the tools below.
+## Just want to play?
 
-### Option A: AltStore (auto refreshes over Wi-Fi)
+You can put the prebuilt app on your iPhone without building anything. Download the latest unsigned IPA from the [Releases](https://github.com/Quinton1110/SmackMe/releases) page, then use one of these tools.
 
-1. Install AltServer on your Mac or PC from [altstore.io](https://altstore.io/), then use it to install AltStore onto your iPhone.
-2. On your iPhone, open AltStore, go to My Apps, tap the plus button in the corner, and choose the SmackMe IPA you downloaded.
-3. Sign in with your Apple ID when prompted.
-4. Wait for the install to finish, then launch SmackMe.
-5. Keep AltServer running on your computer so AltStore can refresh the app automatically before it expires.
+AltStore (stays installed, refreshes itself over Wi-Fi):
 
-### Option B: Sideloadly (simple one time install)
+1. Install AltServer on your Mac or PC from [altstore.io](https://altstore.io/), then use it to put AltStore on your iPhone.
+2. Open AltStore on your iPhone, go to My Apps, tap the plus button, and pick the SmackMe IPA.
+3. Sign in with your Apple ID when asked.
+4. Wait for it to install, then open SmackMe.
+5. Keep AltServer running so AltStore can refresh the app before it expires.
+
+Sideloadly (quick one time install):
 
 1. Install Sideloadly on your Mac or PC from [sideloadly.io](https://sideloadly.io/).
 2. Connect your iPhone with a cable and open Sideloadly.
-3. Drag the SmackMe IPA into Sideloadly, enter your Apple ID, and click Start.
+3. Drag the IPA in, enter your Apple ID, and click Start.
 4. On your iPhone, open Settings, then General, then VPN and Device Management, and trust your developer profile.
-5. Launch SmackMe and play.
+5. Open SmackMe and play.
 
-Note: with a free Apple ID, sideloaded apps stop working after 7 days and need to be reinstalled. A paid Apple Developer account extends that to a full year.
+With a free Apple ID the app stops working after 7 days and has to be reinstalled. A paid Apple Developer account keeps it running for a year.
 
-## 🎮 What is SmackMe?
+## How to play
 
-SmackMe is a fast-paced rhythm game where you respond to commands with physical gestures on your iPhone. The faster the tempo climbs, the harder it gets.
+You respond to spoken commands with physical gestures on the phone. The faster the tempo, the harder it gets.
 
-### Game Actions
-- **Smack** - Tap the screen
-- **Pinch** - Pinch gesture
-- **Shake** - Shake the device
-- **Lift** - Lift the device up
-- **Freeze** - Hold the device completely still
+- Smack: tap the screen
+- Pinch: pinch gesture
+- Shake: shake the device
+- Lift: lift the device up
+- Freeze: hold the device completely still
 
-### Game Modes
-1. **3 Actions - Normal** (100-220 BPM) - Smack, Pinch, Shake only
-2. **4 Actions - Normal** (180-300 BPM) - All 5 actions
-3. **4 Actions - Insane** (320-360 BPM) - Lightning fast!
-4. **2 Player Mode** - Pass and play with a friend
+Modes:
 
-## 📂 Project Structure
+- 3 Actions, Normal (100 to 220 BPM): Smack, Pinch, Shake
+- 4 Actions, Normal (180 to 300 BPM): all five actions
+- 4 Actions, Insane (320 to 360 BPM): all five, very fast
+- 2 Player: pass and play with a friend
+
+## Building from source
+
+You need a Mac with Xcode 14 or later and an iPhone on iOS 15 or later. Open SmackMeRebuild.xcodeproj, connect your iPhone, pick it as the run destination, and build and run. The first time, you'll have to trust your developer profile on the phone.
+
+It's plain UIKit with Combine, AVFoundation for audio, and CoreMotion for the gesture detection. Targets iOS 15 and up, arm64 only.
+
+## Project layout
 
 ```
 SmackMeRebuild/
-├── AppDelegate.swift              # App entry point
-├── Models/
-│   ├── GameModels.swift          # Game data structures
-│   └── GameEngine.swift          # Core game logic
-├── Controllers/
-│   ├── MainMenuViewController.swift
-│   └── GameViewController.swift  # Main gameplay screen
-├── Utilities/
-│   ├── GestureManager.swift      # Gesture detection
-│   └── AudioManager.swift        # Sound playback
-├── Assets.xcassets/              # All game images (50+ PNG files)
-├── Sounds/                       # All audio files (90+ files)
-├── Info.plist                    # App configuration
-├── CREATE_PROJECT.md             # Setup instructions
-└── README.md                     # This file
+  AppDelegate.swift
+  Models/
+    GameModels.swift          game data and level config
+    GameEngine.swift          core game logic and timing
+  Controllers/
+    MainMenuViewController.swift
+    GameViewController.swift   gameplay screen
+  Utilities/
+    GestureManager.swift       gesture and motion detection
+    AudioManager.swift         sound playback
+  Assets.xcassets/             game images
+  Sounds/                      audio and music
+  Info.plist
 ```
 
-## 🔧 Technology Stack
+## About the original
 
-- **Language**: Swift 5
-- **Frameworks**:
-  - UIKit for UI
-  - Combine for reactive programming
-  - AVFoundation for audio
-  - CoreMotion for device motion detection
-- **Minimum iOS Version**: iOS 15.0
-- **Architecture**: arm64 (64-bit)
+TwistMe, later published as SmackMe, was made by Fun Mobility and released around 2012 for 32-bit iOS. No source was available, so this version was rebuilt by studying the original app's property lists and compiled binary and recreating the mechanics in Swift. All of the original images, sounds, music, and the custom font are kept as they were.
 
-## 🚀 Getting Started
+## License
 
-### Prerequisites
-- macOS with Xcode 14+ installed
-- An iPhone running iOS 15.0 or later (for testing)
-- Apple Developer account (free account works for 7-day sideloading)
+The original game assets (images, sounds, and music) are © Fun Mobility.
 
-### Setup Instructions
-
-**See [CREATE_PROJECT.md](CREATE_PROJECT.md) for detailed step-by-step instructions.**
-
-Quick summary:
-1. Open Xcode and create a new iOS App project
-2. Add all the Swift files from this directory
-3. Import assets and sounds
-4. Configure build settings for 64-bit
-5. Build and run!
-
-## 📱 Sideloading to Your iPhone
-
-### Option 1: Direct from Xcode (7 days)
-1. Connect your iPhone via USB
-2. Select your device in Xcode
-3. Build and run (Cmd+R)
-4. Trust the developer profile on your iPhone
-
-### Option 2: AltStore (7 days, auto-refresh)
-1. Install [AltStore](https://altstore.io/)
-2. Export the app as .ipa from Xcode
-3. Sideload via AltStore
-
-### Option 3: Developer Account (1 year)
-- Sign up for Apple Developer Program ($99/year)
-- Apps stay installed for 1 year without refresh
-
-## 🎯 Features Implemented
-
-✅ All original game mechanics
-✅ All 4 game modes
-✅ Gesture recognition (tap, pinch, shake, lift, freeze)
-✅ BPM-based rhythm system (100-360 BPM)
-✅ High score tracking
-✅ All original audio and visual assets
-✅ Modern 64-bit architecture
-✅ iOS 15+ compatibility
-
-## 🎨 Assets
-
-All original game assets have been preserved:
-- **Images**: 50+ PNG files including robot animations, backgrounds, and UI elements
-- **Audio**: 90+ sound effects and music files
-  - BPM-specific action sounds (100-360 BPM)
-  - Background music tracks
-  - Confirmation sounds
-  - Game over and success sounds
-- **Font**: Original custom font (uni05_53.ttf)
-
-## 📋 Original Game Info
-
-- **Original Name**: TwistMe
-- **Published As**: SmackMe
-- **Developer**: Fun Mobility
-- **Original Release**: ~2012
-- **Original Platform**: iOS (32-bit, armv6/armv7)
-
-## 🔨 Rebuilding Details
-
-This project was completely rebuilt from scratch by analyzing the original compiled binary. No source code was available, so everything was recreated by:
-
-1. Extracting and analyzing the game's property lists
-2. Examining the compiled binary structure
-3. Reverse-engineering the game mechanics
-4. Recreating all code in modern Swift
-5. Implementing modern iOS frameworks and patterns
-
-## 🐛 Known Issues / Future Improvements
-
-- [ ] Add haptic feedback for actions
-- [ ] Add Game Center integration for leaderboards
-- [ ] Add tutorial mode for new players
-- [ ] Improve gesture detection thresholds
-- [ ] Add dark mode support
-
-## 📝 License
-
-The original game assets (images, sounds, music) are © Fun Mobility.
-
-This rebuilt source code is provided for educational purposes and personal use only. If you plan to distribute this app, ensure you have appropriate rights to the original assets.
-
-## 🙏 Credits
-
-- **Original Game**: Fun Mobility
-- **Rebuild**: Claude Code (2026)
-- **Purpose**: Preserving classic iOS gaming history and making it playable on modern devices
-
----
-
-Enjoy playing SmackMe on your modern iPhone! 🎮🤖
+The rebuilt source code here is provided for personal and educational use. If you plan to distribute the app, make sure you have the rights to the original assets.
