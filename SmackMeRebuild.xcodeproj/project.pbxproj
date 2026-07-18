@@ -1,0 +1,941 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		589B5FD2AD1443CCBD7F918B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F419D0F9147E29A297C08 /* AppDelegate.swift */; };
+		58243D07EED9454485D7A70F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891304BB3DA4CF998BBC3FC /* SceneDelegate.swift */; };
+		B5B2DF56E4464D48A3E91BED /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD20FF9EBDBC47358D14FF39 /* MainMenuViewController.swift */; };
+		5962C0347A284F4C875D3962 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DA0C995F49451CBE0E1FE4 /* GameViewController.swift */; };
+		DCDDFE74CB1A404FA28CB1A2 /* GameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E02B4002C2A4E28BBB3906D /* GameModels.swift */; };
+		DD50840DAC1E462CB092616A /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF0F4D685F43F5A9901852 /* GameEngine.swift */; };
+		6043D7CE37254D4D9B3FBEE9 /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09250FA88B4044928B3A63 /* GestureManager.swift */; };
+		941C70C67A9F49618914F7E5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5A25D2EF064398B1DF99A2 /* AudioManager.swift */; };
+		2487D50BF096416CACE25CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A07790EA9E54070B4919FDD /* Assets.xcassets */; };
+		007CB9B834E9413586F1BCCD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A4150F0E7C4D421F8BC10414 /* Default.png */; };
+		87FFA7A3A8A04DB0846C2840 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 45963B55FD7F42F6AC2DF873 /* Icon.png */; };
+		F5FA40874BD24B63A87CC89B /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = F6C52D0372D34B53A84E1C38 /* back_button.png */; };
+		5FCF31C4BB4D4B9FA40773A1 /* button_done.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE11C5DD1864463B91C167B /* button_done.png */; };
+		45B9E9DCA3A64781B1E0C6E9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A4D94FA08794F05995CEE58 /* checkmark.png */; };
+		9B1C76DD614245B6A1D214D2 /* command_liftme.png in Resources */ = {isa = PBXBuildFile; fileRef = 053A70274F6042F1A6B4BE70 /* command_liftme.png */; };
+		7DC9F0C20E724E1B82C3B2F4 /* command_pinchme.png in Resources */ = {isa = PBXBuildFile; fileRef = 70064992AEF5497896ACF40A /* command_pinchme.png */; };
+		40801E274AF84DD99A09A051 /* command_shakeme.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E5859572A98441FA093E6E9 /* command_shakeme.png */; };
+		BC387E1249314DC895E88487 /* command_smackme.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CED1D2A97C45F5B924BBE8 /* command_smackme.png */; };
+		1A3C42913DC2401D8CB46C89 /* lock_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 964B2193921240689D3270B8 /* lock_a.png */; };
+		39ECB4C7C63D4B3C9616C206 /* lock_b.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD34E1154D246A1900EB661 /* lock_b.png */; };
+		FDE1E276AA2E422C9843395A /* smackme_robot_bg_07_pulse&ripples.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5AE071DBD94845A92BEE10 /* smackme_robot_bg_07_pulse&ripples.png */; };
+		63F8F78332CE43039E54C068 /* smackme_robot_bg_biohazard.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D25BB736044D64BF3852F5 /* smackme_robot_bg_biohazard.png */; };
+		576A55A96725491BA06C5CAA /* smackme_robot_bg_circles.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAC49D4FF5D462294C9D0D2 /* smackme_robot_bg_circles.png */; };
+		1A5DBEADF32F452694695E57 /* smackme_robot_bg_nuclear.png in Resources */ = {isa = PBXBuildFile; fileRef = 67648BA156B74B02AA4EB241 /* smackme_robot_bg_nuclear.png */; };
+		A1170C5BA11849ADAAB795D5 /* smackme_robot_bg_robotpattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 073935C44F5540578F9BAAF6 /* smackme_robot_bg_robotpattern.png */; };
+		1BEB302E99134C90A2346434 /* smackme_robot_bg_sprokets.png in Resources */ = {isa = PBXBuildFile; fileRef = 243F0DDAC5324BE8ACC1F115 /* smackme_robot_bg_sprokets.png */; };
+		B6E5DD577F954332B6A1B325 /* smackme_robot_bg_starburst.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6694E7C7C24F8DAB6B8326 /* smackme_robot_bg_starburst.png */; };
+		AE6DB7D235734402A3D88C57 /* smackme_robot_congratulations.png in Resources */ = {isa = PBXBuildFile; fileRef = 921FE1FEA2BF4BA6ADE49E09 /* smackme_robot_congratulations.png */; };
+		1A721545EBAB4307AFCA6028 /* smackme_robot_congratulations2_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2DB065FAD44171BB488B00 /* smackme_robot_congratulations2_trans.png */; };
+		51B3D67995EB4459BDB0692F /* smackme_robot_congratulations3_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9B7A31D803474299760920 /* smackme_robot_congratulations3_trans.png */; };
+		86DD9DA2F2A84E208666E82C /* smackme_robot_congratulations_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DA988402774A6EBC300AF6 /* smackme_robot_congratulations_trans.png */; };
+		49DDA14B00BB48A2994D1578 /* smackme_robot_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BB3468209A744AF9A8F1F20 /* smackme_robot_credits.png */; };
+		BA9EA7A6574244BB83709250 /* smackme_robot_freeze01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C24AD94E6F14F749707E8EA /* smackme_robot_freeze01_trans.png */; };
+		7A01330F9BE14F699F08756C /* smackme_robot_freeze02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 88156BE3D43441D79511963A /* smackme_robot_freeze02_trans.png */; };
+		371246C3A07A424BB57D9B4B /* smackme_robot_hiscore_congratulations.png in Resources */ = {isa = PBXBuildFile; fileRef = D91AEF1E0FFC43CA82885A5D /* smackme_robot_hiscore_congratulations.png */; };
+		1B53D0D00F28487486CD382B /* smackme_robot_hiscore_enter.png in Resources */ = {isa = PBXBuildFile; fileRef = A6A1BD86A40949F8B99E4A0B /* smackme_robot_hiscore_enter.png */; };
+		7F09AFA3F7C8455EBC16FEBC /* smackme_robot_liftme01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 195DA426EBA64CACA6C7FF8D /* smackme_robot_liftme01_trans.png */; };
+		66EE17AC607A4BCCBEC724B9 /* smackme_robot_liftme02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F26F8982C324C8F8D63A9B4 /* smackme_robot_liftme02_trans.png */; };
+		94A1AAA1A7B649F48820055E /* smackme_robot_menu6a_background.png in Resources */ = {isa = PBXBuildFile; fileRef = F931E540B9A544A7ABDAD29C /* smackme_robot_menu6a_background.png */; };
+		381BC4C3DCA4478F829EBD08 /* smackme_robot_menu6b_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6104F19AEDC7456A8D1799E0 /* smackme_robot_menu6b_background.png */; };
+		B443846043F243DD8549264E /* smackme_robot_menu6c_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AE26E7919814850AC89ADD6 /* smackme_robot_menu6c_background.png */; };
+		3557A8E2F0564631B3CB9810 /* smackme_robot_passme01.png in Resources */ = {isa = PBXBuildFile; fileRef = EB9E08FB81EB43B2A5376DCA /* smackme_robot_passme01.png */; };
+		A5F706AB7AAC4482AE7D0C97 /* smackme_robot_passme02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0334109F5D9E4ADB829BE3B8 /* smackme_robot_passme02.png */; };
+		8E829B0F36AC4B8D8A01843E /* smackme_robot_pinchme01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E6A47007C14EB3B94C0777 /* smackme_robot_pinchme01_trans.png */; };
+		1250FD32A3D24234811C2CDF /* smackme_robot_pinchme02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 520C6B2522384BA1926303BD /* smackme_robot_pinchme02_trans.png */; };
+		7E18CBF5D4614DAD87D3554B /* smackme_robot_round01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = B19B2194C9174BC0B3D8484B /* smackme_robot_round01_trans.png */; };
+		5169EBC0245A4DC39AE5061C /* smackme_robot_round02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = A0944A9A25D64CAABA85EA85 /* smackme_robot_round02_trans.png */; };
+		C8A72B97032B44F89AECD2FA /* smackme_robot_round03_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F987CD7EFF14C72A7BFBC32 /* smackme_robot_round03_trans.png */; };
+		48623F60C26A4F04AF406340 /* smackme_robot_round04_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 578A2B4D98354E9A8EC589EE /* smackme_robot_round04_trans.png */; };
+		15D24D2CBFF947C38FAAC1C5 /* smackme_robot_shakeme01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B815A3058C14A8895645215 /* smackme_robot_shakeme01_trans.png */; };
+		6C126855DF914F07BBC86396 /* smackme_robot_shakeme02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFAF21F93384E0D8A2125B2 /* smackme_robot_shakeme02_trans.png */; };
+		4E13E051EA594865980253FD /* smackme_robot_smackme01_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AEB27D5F12841F097308745 /* smackme_robot_smackme01_trans.png */; };
+		C2438D8F5119433181D40430 /* smackme_robot_smackme02_trans.png in Resources */ = {isa = PBXBuildFile; fileRef = A61804F6FDFA476E87EB3E96 /* smackme_robot_smackme02_trans.png */; };
+		7109BE7CEFC544E197E95FC0 /* smackme_robot_tutorial_freezeme.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB24083B441477EAC7E2D6F /* smackme_robot_tutorial_freezeme.png */; };
+		15802A03DD9E49DAAD5142C1 /* smackme_robot_tutorial_liftme.png in Resources */ = {isa = PBXBuildFile; fileRef = 67622E193238445B8A3584B0 /* smackme_robot_tutorial_liftme.png */; };
+		BC719FF1BB8B4BD1A05E112E /* smackme_robot_tutorial_pinchme.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C68D2B10D134173895B993D /* smackme_robot_tutorial_pinchme.png */; };
+		4D899736BA9940F5B4294916 /* smackme_robot_tutorial_shakeme.png in Resources */ = {isa = PBXBuildFile; fileRef = CC3D8EFE58F14D57BDB86479 /* smackme_robot_tutorial_shakeme.png */; };
+		9F0033C4EB36493C83A970D9 /* smackme_robot_tutorial_smackme.png in Resources */ = {isa = PBXBuildFile; fileRef = 05BEB6F9191848D68DD1A5F1 /* smackme_robot_tutorial_smackme.png */; };
+		9AECE5FEA6CD4B4E9F78C023 /* top_round_and_progress_bar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 887B0E1E28AD4D4CB2CD0D61 /* top_round_and_progress_bar_background.png */; };
+		649083DD89EB4B7181275CBA /* 100Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F66687705A74FAEA9967F45 /* 100Freeze.wav */; };
+		9755BAF0C259480FBC34FDF6 /* 100Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9E1A49C07E024C399A181090 /* 100Lift.wav */; };
+		B1ABF28A4B1F4035BBB73E61 /* 100Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 089BE1964E3142BCA8F8EC86 /* 100Music.wav */; };
+		65D717EE198946FCB02B3C39 /* 100Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9239BE6444043DCBCC0CFA9 /* 100Pinch.wav */; };
+		1F67377841644F65A304D879 /* 100Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13970B6BC64B45C6B56FE033 /* 100Shake.wav */; };
+		FAE7CC1387604FDD86B70EF2 /* 100Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6EB2F0A7E90041C2B9819F04 /* 100Smack.wav */; };
+		99D456BD61A2417F8BB9C006 /* 100percent.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC1FB9B73641CAB21DEAA5 /* 100percent.wav */; };
+		37058E84B4C241B4B789AF79 /* 140Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6D16DE4074C299B9DE7B3 /* 140Freeze.wav */; };
+		4F4921BFDE3C4891BA26B4C0 /* 140Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90158EF132F2498CA7E275F2 /* 140Lift.wav */; };
+		C53E194F05104EA18EEA6C9A /* 140Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 03B56F3550C84F5B9F50AC9A /* 140Music.wav */; };
+		8755A3E41301474B84C2B890 /* 140Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = DFC61B6AEED34AF2AFE52D2F /* 140Pinch.wav */; };
+		8B50711BEF604EACA8EF6CA7 /* 140Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3941CEE7567049E0AC500DF3 /* 140Shake.wav */; };
+		7634A56CE7E64571ABD8D179 /* 140Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0A7E911C27B24421A12E9083 /* 140Smack.wav */; };
+		B0C80AEA36D44933931018B8 /* 160Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1563EDD2104742A1A43A9296 /* 160Freeze.wav */; };
+		5289B6E46FF648898E482B5D /* 160Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B70E21EAB2D4FE5BA0E429B /* 160Lift.wav */; };
+		8CC692DC9897421889C75263 /* 160Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 98108EF4E43E4BF4A9ADB476 /* 160Music.wav */; };
+		A855A6452AF641DEB3FF11EB /* 160Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F4829C2ED764F6C9935BA8C /* 160Pinch.wav */; };
+		3E8942B855F54CE69D5D7C92 /* 160Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0BFB48684EB4066882C306A /* 160Shake.wav */; };
+		D7D71AED84C4405AADCC58AA /* 160Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3AFD194BE9C749458B81126F /* 160Smack.wav */; };
+		7C2049E4045D4011A66CEE44 /* 180Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FF9E6A1524EE59D007AB6 /* 180Freeze.wav */; };
+		01D82B9AD301430C81FA175E /* 180Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = E822720471404E45B0EE629F /* 180Lift.wav */; };
+		3841A4547BC44DA08BD52EC1 /* 180Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = C7D6F28CA18F405EBE61FB98 /* 180Music.wav */; };
+		69572910764C4CF09A3181FD /* 180Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3FC9E5D3487F4BA6A88A5E1E /* 180Pinch.wav */; };
+		F1699EC130D14F9DB1BBBDE8 /* 180Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = A3820CEEEA964375ABE8106E /* 180Shake.wav */; };
+		7B2112A694C2442184AF5565 /* 180Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = F98A1F45FF5D46299C9EC3DE /* 180Smack.wav */; };
+		395AECA7A972428B90B716FD /* 200Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B46EBBE3D7749219DEFEBB4 /* 200Freeze.wav */; };
+		72C3A60890E44749944118B7 /* 200Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC290616064EC3944221F6 /* 200Lift.wav */; };
+		4518F8E42F6D4BBBB69BC7E4 /* 200Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 67E4E2E6ABB646F89B9EEC50 /* 200Music.wav */; };
+		89530CBDBBD040E9B60E636F /* 200Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 482EF136A4B34DAB8FAE3668 /* 200Pinch.wav */; };
+		7FACDCB7AB6647C080FA4739 /* 200Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A0B6CC6E8424C74AE0E17FE /* 200Shake.wav */; };
+		9E87C314FF3E43AB95756CA7 /* 200Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9A8253EB124429CBFDDAF4D /* 200Smack.wav */; };
+		665DD4F86ECF4E93BEB70F3A /* 220Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2F8C1B6CD24D4183A3D3ED76 /* 220Freeze.wav */; };
+		81BE0ED0D7D549D1AC44F1DD /* 220Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6C1DF49D37FA4B809D0E13C7 /* 220Lift.wav */; };
+		A75719A4148F4F2284CB108E /* 220Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6A63CEB8632747B7B13E4CBE /* 220Music.wav */; };
+		68D55D90477A4D7E9D1917F3 /* 220Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 492494F23DCB4AA09C209AC3 /* 220Pinch.wav */; };
+		5CC7822147094B8E99C50FF2 /* 220Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7E431A4034DD0B77657E3 /* 220Shake.wav */; };
+		D8BB8ECF04934AC7A7743B03 /* 220Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE29807414D4E6AB716F2CD /* 220Smack.wav */; };
+		D8E792AC3393419D84206876 /* 240Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E97627ED71A446F83AD616B /* 240Freeze.wav */; };
+		35E4A1E72C0048A498BF1997 /* 240Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3A17099930047CFAD82122A /* 240Lift.wav */; };
+		F9AA02BE2FF54EA78884C16B /* 240Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70170FA103334213A93E6A02 /* 240Music.wav */; };
+		DBBC723E7C374CDF8D8F674D /* 240Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2AED0EA3A0D34E06A7E6D0E7 /* 240Pinch.wav */; };
+		B454F02C8820424B91373301 /* 240Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 698454D83B454B33870D9E37 /* 240Shake.wav */; };
+		EF6BA1C759A34D2188FC8FFF /* 240Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64363A10A11D4968B18DB8D4 /* 240Smack.wav */; };
+		C2BA18B7621643F380B2799E /* 260Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 641E92B0D62E48D19CE1AD47 /* 260Freeze.wav */; };
+		7465D008E2494F39B686724C /* 260Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = BC4C246790AA4F6F8E12762B /* 260Lift.wav */; };
+		BEB889191D4E49B79A66D557 /* 260Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 704A6ABE584542E1B6259C1B /* 260Music.wav */; };
+		FC3E59E93ED14122859DC550 /* 260Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8EBBD92B67894B5FBBD15CA5 /* 260Pinch.wav */; };
+		0001467F5D3B45488F471BB5 /* 260Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 53CB3648BB2C4F2E92076085 /* 260Shake.wav */; };
+		C3E5876317D74F89BF576C88 /* 260Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAEF28A366854CC19363D5B1 /* 260Smack.wav */; };
+		75136F65047342668FC4B8BA /* 280Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0CF64719C5144CBA19A98BC /* 280Freeze.wav */; };
+		54F7338B5E444D508F0DAB05 /* 280Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = C989909255514A538F142EF0 /* 280Lift.wav */; };
+		8EA24A8BF5A0445A9F750D81 /* 280Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86E4599CC1884F8DAF5F0771 /* 280Music.wav */; };
+		38D04487C29C4C27898A9F60 /* 280Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF5E961F51D945B8A61B3F41 /* 280Pinch.wav */; };
+		CCFD71AC96CF4A7B962D706B /* 280Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = D909D7B50A754AC9B9A27CEA /* 280Shake.wav */; };
+		4ACFDEB5D4F94958BD8D52E7 /* 280Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB1618E1F6334F3E8B9526D2 /* 280Smack.wav */; };
+		1077EBB3C63347C68C82E082 /* 300Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4139210324D243D3BF399626 /* 300Freeze.wav */; };
+		51253BCF066F41139FD1DEF5 /* 300Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1368D84F774F4E5384FE75A4 /* 300Lift.wav */; };
+		ED29C8267E414486B4A73C9D /* 300Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = B3DF59C2AB3E4044A787F746 /* 300Music.wav */; };
+		DFA789C9665B4840A9216656 /* 300Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = E05DE06668EF40D19FEFB965 /* 300Pinch.wav */; };
+		8B65DFDDB76F4DCEAF65687E /* 300Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4BAE6BBFC66243ECAFEBEB1F /* 300Shake.wav */; };
+		B78BF2A30E6A4D1AACAB1DA9 /* 300Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDFBCC81F0CE456AA999B39D /* 300Smack.wav */; };
+		51356192D1A147EA8A6DBE1D /* 320Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 31C5A604390A4C3DB5AEE039 /* 320Freeze.wav */; };
+		AEA6D6D448A24BEE8C0E1356 /* 320Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FEA5FB667DC40F0AE761B0C /* 320Lift.wav */; };
+		A39C4B6AF85C4E3B82E9D0D0 /* 320Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 423BCB90E0004E5F9C4010E5 /* 320Music.wav */; };
+		277EC15957884E08A822645A /* 320Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F8C8542D45746B488A52722 /* 320Pinch.wav */; };
+		EE929D5167954EE59FEA584B /* 320Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3E88876744D13B0B27D2B /* 320Shake.wav */; };
+		665B26BDCE05458B8029C6F0 /* 320Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 099F4DE6260649EB93792E9C /* 320Smack.wav */; };
+		F0C24DA05433412896D22CD9 /* 340Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 76044258FA394B5EA45D5631 /* 340Freeze.wav */; };
+		1546EF0D36324C68861BA593 /* 340Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7C67039311B24489A6ACB8F9 /* 340Lift.wav */; };
+		C15D0D9F494942F49F636CD0 /* 340Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21347B9E7F274F2E9F241E4D /* 340Music.wav */; };
+		8E08F682859D449992DAB7C7 /* 340Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB312010D1924FEFA8EBEBAF /* 340Pinch.wav */; };
+		8C63B3D3185A402198017916 /* 340Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = E169E5DC8C434B10B3FC924A /* 340Shake.wav */; };
+		2E7AFA74135D42CEB6AB9E54 /* 340Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3FFEB9AE43DA4A3B89CB6A33 /* 340Smack.wav */; };
+		EEA500457B2E46C68F2398F3 /* 360Freeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44C7CA8F20F6436B9B4B1527 /* 360Freeze.wav */; };
+		1561DB6FC5DD42F894426EB3 /* 360Lift.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3429811839894B1DBD6BAEC9 /* 360Lift.wav */; };
+		633FF6D57204428387E27FA8 /* 360Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71254EDEA95D40CA8146B557 /* 360Music.wav */; };
+		9B389F21241245C9B9A38E0A /* 360Pinch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D6AB8D01DFE4397B6CCAF8D /* 360Pinch.wav */; };
+		4E2506B98DD140E59F2CE0E5 /* 360Shake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C72A819FB034B11B6F1DF73 /* 360Shake.wav */; };
+		6324352BB7FA47ADBB845BF0 /* 360Smack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6BC4E9A89F78427BAB2757B5 /* 360Smack.wav */; };
+		2141003383244B34941F110B /* Credits.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAFBC6DE344C42DE8AF4893F /* Credits.mp3 */; };
+		A8AA356FB97F4CBFB2CA0E92 /* HighScoreHappy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0DF8F54EDEA34081BE0FBD55 /* HighScoreHappy.mp3 */; };
+		4C56CA159336458BB9DDF230 /* HighScoreSad.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 267E44ED6ED94E16A7C39DF8 /* HighScoreSad.mp3 */; };
+		EF174CEA508742FA9A1C8296 /* confirm1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A329C5E5F0C646328157DCDF /* confirm1.wav */; };
+		15926740327E4301809DED25 /* confirm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2478180B0ED4F6FA16758E4 /* confirm2.wav */; };
+		D1828060233D43A7880F9456 /* confirm3.wav in Resources */ = {isa = PBXBuildFile; fileRef = EEE669AFCF70407C92D4D475 /* confirm3.wav */; };
+		634127BE05F7473AB41789DA /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = FCE685A525524B5BBA961E97 /* fail.wav */; };
+		912B414AA08B4C28BEC1A328 /* interlude.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8BA3DBEA1BB14E11A30634CE /* interlude.wav */; };
+		B9D62F0166DB4885AAF7ABAD /* introduction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8108C844A8F444DAE7FF0EA /* introduction.mp3 */; };
+		73905987EB3D4871AF7EE418 /* newhighscore.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4958D8541DBE49F2BA83D621 /* newhighscore.wav */; };
+		4FD9260A8A684CB8A7DD5359 /* pass_me.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8ABDADBFC86641BBA013DB99 /* pass_me.wav */; };
+		D9B95E3599FC488C8367B9D3 /* uni05_53.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB97BDC69BBA4E369622E81E /* uni05_53.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A0DAF6018EDB4B55AB2768EC /* SmackMeRebuild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmackMeRebuild.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEB4D7CF4558441CB10A62AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A07790EA9E54070B4919FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C16F419D0F9147E29A297C08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4891304BB3DA4CF998BBC3FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BD20FF9EBDBC47358D14FF39 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		C3DA0C995F49451CBE0E1FE4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		1E02B4002C2A4E28BBB3906D /* GameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModels.swift; sourceTree = "<group>"; };
+		E2CF0F4D685F43F5A9901852 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		0C09250FA88B4044928B3A63 /* GestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
+		BB5A25D2EF064398B1DF99A2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		A4150F0E7C4D421F8BC10414 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		45963B55FD7F42F6AC2DF873 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		F6C52D0372D34B53A84E1C38 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
+		9BE11C5DD1864463B91C167B /* button_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_done.png; sourceTree = "<group>"; };
+		2A4D94FA08794F05995CEE58 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		053A70274F6042F1A6B4BE70 /* command_liftme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = command_liftme.png; sourceTree = "<group>"; };
+		70064992AEF5497896ACF40A /* command_pinchme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = command_pinchme.png; sourceTree = "<group>"; };
+		9E5859572A98441FA093E6E9 /* command_shakeme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = command_shakeme.png; sourceTree = "<group>"; };
+		E9CED1D2A97C45F5B924BBE8 /* command_smackme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = command_smackme.png; sourceTree = "<group>"; };
+		964B2193921240689D3270B8 /* lock_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_a.png; sourceTree = "<group>"; };
+		BFD34E1154D246A1900EB661 /* lock_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_b.png; sourceTree = "<group>"; };
+		DF5AE071DBD94845A92BEE10 /* smackme_robot_bg_07_pulse&ripples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smackme_robot_bg_07_pulse&ripples.png"; sourceTree = "<group>"; };
+		39D25BB736044D64BF3852F5 /* smackme_robot_bg_biohazard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_biohazard.png; sourceTree = "<group>"; };
+		FAAC49D4FF5D462294C9D0D2 /* smackme_robot_bg_circles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_circles.png; sourceTree = "<group>"; };
+		67648BA156B74B02AA4EB241 /* smackme_robot_bg_nuclear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_nuclear.png; sourceTree = "<group>"; };
+		073935C44F5540578F9BAAF6 /* smackme_robot_bg_robotpattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_robotpattern.png; sourceTree = "<group>"; };
+		243F0DDAC5324BE8ACC1F115 /* smackme_robot_bg_sprokets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_sprokets.png; sourceTree = "<group>"; };
+		BE6694E7C7C24F8DAB6B8326 /* smackme_robot_bg_starburst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_bg_starburst.png; sourceTree = "<group>"; };
+		921FE1FEA2BF4BA6ADE49E09 /* smackme_robot_congratulations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_congratulations.png; sourceTree = "<group>"; };
+		1F2DB065FAD44171BB488B00 /* smackme_robot_congratulations2_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_congratulations2_trans.png; sourceTree = "<group>"; };
+		9D9B7A31D803474299760920 /* smackme_robot_congratulations3_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_congratulations3_trans.png; sourceTree = "<group>"; };
+		F2DA988402774A6EBC300AF6 /* smackme_robot_congratulations_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_congratulations_trans.png; sourceTree = "<group>"; };
+		7BB3468209A744AF9A8F1F20 /* smackme_robot_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_credits.png; sourceTree = "<group>"; };
+		0C24AD94E6F14F749707E8EA /* smackme_robot_freeze01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_freeze01_trans.png; sourceTree = "<group>"; };
+		88156BE3D43441D79511963A /* smackme_robot_freeze02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_freeze02_trans.png; sourceTree = "<group>"; };
+		D91AEF1E0FFC43CA82885A5D /* smackme_robot_hiscore_congratulations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_hiscore_congratulations.png; sourceTree = "<group>"; };
+		A6A1BD86A40949F8B99E4A0B /* smackme_robot_hiscore_enter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_hiscore_enter.png; sourceTree = "<group>"; };
+		195DA426EBA64CACA6C7FF8D /* smackme_robot_liftme01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_liftme01_trans.png; sourceTree = "<group>"; };
+		5F26F8982C324C8F8D63A9B4 /* smackme_robot_liftme02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_liftme02_trans.png; sourceTree = "<group>"; };
+		F931E540B9A544A7ABDAD29C /* smackme_robot_menu6a_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_menu6a_background.png; sourceTree = "<group>"; };
+		6104F19AEDC7456A8D1799E0 /* smackme_robot_menu6b_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_menu6b_background.png; sourceTree = "<group>"; };
+		9AE26E7919814850AC89ADD6 /* smackme_robot_menu6c_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_menu6c_background.png; sourceTree = "<group>"; };
+		EB9E08FB81EB43B2A5376DCA /* smackme_robot_passme01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_passme01.png; sourceTree = "<group>"; };
+		0334109F5D9E4ADB829BE3B8 /* smackme_robot_passme02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_passme02.png; sourceTree = "<group>"; };
+		A0E6A47007C14EB3B94C0777 /* smackme_robot_pinchme01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_pinchme01_trans.png; sourceTree = "<group>"; };
+		520C6B2522384BA1926303BD /* smackme_robot_pinchme02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_pinchme02_trans.png; sourceTree = "<group>"; };
+		B19B2194C9174BC0B3D8484B /* smackme_robot_round01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_round01_trans.png; sourceTree = "<group>"; };
+		A0944A9A25D64CAABA85EA85 /* smackme_robot_round02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_round02_trans.png; sourceTree = "<group>"; };
+		1F987CD7EFF14C72A7BFBC32 /* smackme_robot_round03_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_round03_trans.png; sourceTree = "<group>"; };
+		578A2B4D98354E9A8EC589EE /* smackme_robot_round04_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_round04_trans.png; sourceTree = "<group>"; };
+		6B815A3058C14A8895645215 /* smackme_robot_shakeme01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_shakeme01_trans.png; sourceTree = "<group>"; };
+		3AFAF21F93384E0D8A2125B2 /* smackme_robot_shakeme02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_shakeme02_trans.png; sourceTree = "<group>"; };
+		8AEB27D5F12841F097308745 /* smackme_robot_smackme01_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_smackme01_trans.png; sourceTree = "<group>"; };
+		A61804F6FDFA476E87EB3E96 /* smackme_robot_smackme02_trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_smackme02_trans.png; sourceTree = "<group>"; };
+		3BB24083B441477EAC7E2D6F /* smackme_robot_tutorial_freezeme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_tutorial_freezeme.png; sourceTree = "<group>"; };
+		67622E193238445B8A3584B0 /* smackme_robot_tutorial_liftme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_tutorial_liftme.png; sourceTree = "<group>"; };
+		4C68D2B10D134173895B993D /* smackme_robot_tutorial_pinchme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_tutorial_pinchme.png; sourceTree = "<group>"; };
+		CC3D8EFE58F14D57BDB86479 /* smackme_robot_tutorial_shakeme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_tutorial_shakeme.png; sourceTree = "<group>"; };
+		05BEB6F9191848D68DD1A5F1 /* smackme_robot_tutorial_smackme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smackme_robot_tutorial_smackme.png; sourceTree = "<group>"; };
+		887B0E1E28AD4D4CB2CD0D61 /* top_round_and_progress_bar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_round_and_progress_bar_background.png; sourceTree = "<group>"; };
+		9F66687705A74FAEA9967F45 /* 100Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Freeze.wav; sourceTree = "<group>"; };
+		9E1A49C07E024C399A181090 /* 100Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Lift.wav; sourceTree = "<group>"; };
+		089BE1964E3142BCA8F8EC86 /* 100Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Music.wav; sourceTree = "<group>"; };
+		C9239BE6444043DCBCC0CFA9 /* 100Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Pinch.wav; sourceTree = "<group>"; };
+		13970B6BC64B45C6B56FE033 /* 100Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Shake.wav; sourceTree = "<group>"; };
+		6EB2F0A7E90041C2B9819F04 /* 100Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100Smack.wav; sourceTree = "<group>"; };
+		0BBC1FB9B73641CAB21DEAA5 /* 100percent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 100percent.wav; sourceTree = "<group>"; };
+		6AB6D16DE4074C299B9DE7B3 /* 140Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Freeze.wav; sourceTree = "<group>"; };
+		90158EF132F2498CA7E275F2 /* 140Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Lift.wav; sourceTree = "<group>"; };
+		03B56F3550C84F5B9F50AC9A /* 140Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Music.wav; sourceTree = "<group>"; };
+		DFC61B6AEED34AF2AFE52D2F /* 140Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Pinch.wav; sourceTree = "<group>"; };
+		3941CEE7567049E0AC500DF3 /* 140Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Shake.wav; sourceTree = "<group>"; };
+		0A7E911C27B24421A12E9083 /* 140Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 140Smack.wav; sourceTree = "<group>"; };
+		1563EDD2104742A1A43A9296 /* 160Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Freeze.wav; sourceTree = "<group>"; };
+		3B70E21EAB2D4FE5BA0E429B /* 160Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Lift.wav; sourceTree = "<group>"; };
+		98108EF4E43E4BF4A9ADB476 /* 160Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Music.wav; sourceTree = "<group>"; };
+		5F4829C2ED764F6C9935BA8C /* 160Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Pinch.wav; sourceTree = "<group>"; };
+		D0BFB48684EB4066882C306A /* 160Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Shake.wav; sourceTree = "<group>"; };
+		3AFD194BE9C749458B81126F /* 160Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 160Smack.wav; sourceTree = "<group>"; };
+		9C0FF9E6A1524EE59D007AB6 /* 180Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Freeze.wav; sourceTree = "<group>"; };
+		E822720471404E45B0EE629F /* 180Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Lift.wav; sourceTree = "<group>"; };
+		C7D6F28CA18F405EBE61FB98 /* 180Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Music.wav; sourceTree = "<group>"; };
+		3FC9E5D3487F4BA6A88A5E1E /* 180Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Pinch.wav; sourceTree = "<group>"; };
+		A3820CEEEA964375ABE8106E /* 180Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Shake.wav; sourceTree = "<group>"; };
+		F98A1F45FF5D46299C9EC3DE /* 180Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180Smack.wav; sourceTree = "<group>"; };
+		4B46EBBE3D7749219DEFEBB4 /* 200Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Freeze.wav; sourceTree = "<group>"; };
+		3BFC290616064EC3944221F6 /* 200Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Lift.wav; sourceTree = "<group>"; };
+		67E4E2E6ABB646F89B9EEC50 /* 200Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Music.wav; sourceTree = "<group>"; };
+		482EF136A4B34DAB8FAE3668 /* 200Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Pinch.wav; sourceTree = "<group>"; };
+		7A0B6CC6E8424C74AE0E17FE /* 200Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Shake.wav; sourceTree = "<group>"; };
+		A9A8253EB124429CBFDDAF4D /* 200Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 200Smack.wav; sourceTree = "<group>"; };
+		2F8C1B6CD24D4183A3D3ED76 /* 220Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Freeze.wav; sourceTree = "<group>"; };
+		6C1DF49D37FA4B809D0E13C7 /* 220Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Lift.wav; sourceTree = "<group>"; };
+		6A63CEB8632747B7B13E4CBE /* 220Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Music.wav; sourceTree = "<group>"; };
+		492494F23DCB4AA09C209AC3 /* 220Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Pinch.wav; sourceTree = "<group>"; };
+		7EE7E431A4034DD0B77657E3 /* 220Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Shake.wav; sourceTree = "<group>"; };
+		5BE29807414D4E6AB716F2CD /* 220Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 220Smack.wav; sourceTree = "<group>"; };
+		1E97627ED71A446F83AD616B /* 240Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Freeze.wav; sourceTree = "<group>"; };
+		B3A17099930047CFAD82122A /* 240Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Lift.wav; sourceTree = "<group>"; };
+		70170FA103334213A93E6A02 /* 240Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Music.wav; sourceTree = "<group>"; };
+		2AED0EA3A0D34E06A7E6D0E7 /* 240Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Pinch.wav; sourceTree = "<group>"; };
+		698454D83B454B33870D9E37 /* 240Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Shake.wav; sourceTree = "<group>"; };
+		64363A10A11D4968B18DB8D4 /* 240Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240Smack.wav; sourceTree = "<group>"; };
+		641E92B0D62E48D19CE1AD47 /* 260Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Freeze.wav; sourceTree = "<group>"; };
+		BC4C246790AA4F6F8E12762B /* 260Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Lift.wav; sourceTree = "<group>"; };
+		704A6ABE584542E1B6259C1B /* 260Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Music.wav; sourceTree = "<group>"; };
+		8EBBD92B67894B5FBBD15CA5 /* 260Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Pinch.wav; sourceTree = "<group>"; };
+		53CB3648BB2C4F2E92076085 /* 260Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Shake.wav; sourceTree = "<group>"; };
+		FAEF28A366854CC19363D5B1 /* 260Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 260Smack.wav; sourceTree = "<group>"; };
+		E0CF64719C5144CBA19A98BC /* 280Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Freeze.wav; sourceTree = "<group>"; };
+		C989909255514A538F142EF0 /* 280Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Lift.wav; sourceTree = "<group>"; };
+		86E4599CC1884F8DAF5F0771 /* 280Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Music.wav; sourceTree = "<group>"; };
+		BF5E961F51D945B8A61B3F41 /* 280Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Pinch.wav; sourceTree = "<group>"; };
+		D909D7B50A754AC9B9A27CEA /* 280Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Shake.wav; sourceTree = "<group>"; };
+		BB1618E1F6334F3E8B9526D2 /* 280Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 280Smack.wav; sourceTree = "<group>"; };
+		4139210324D243D3BF399626 /* 300Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Freeze.wav; sourceTree = "<group>"; };
+		1368D84F774F4E5384FE75A4 /* 300Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Lift.wav; sourceTree = "<group>"; };
+		B3DF59C2AB3E4044A787F746 /* 300Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Music.wav; sourceTree = "<group>"; };
+		E05DE06668EF40D19FEFB965 /* 300Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Pinch.wav; sourceTree = "<group>"; };
+		4BAE6BBFC66243ECAFEBEB1F /* 300Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Shake.wav; sourceTree = "<group>"; };
+		EDFBCC81F0CE456AA999B39D /* 300Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 300Smack.wav; sourceTree = "<group>"; };
+		31C5A604390A4C3DB5AEE039 /* 320Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Freeze.wav; sourceTree = "<group>"; };
+		0FEA5FB667DC40F0AE761B0C /* 320Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Lift.wav; sourceTree = "<group>"; };
+		423BCB90E0004E5F9C4010E5 /* 320Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Music.wav; sourceTree = "<group>"; };
+		0F8C8542D45746B488A52722 /* 320Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Pinch.wav; sourceTree = "<group>"; };
+		1BD3E88876744D13B0B27D2B /* 320Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Shake.wav; sourceTree = "<group>"; };
+		099F4DE6260649EB93792E9C /* 320Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 320Smack.wav; sourceTree = "<group>"; };
+		76044258FA394B5EA45D5631 /* 340Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Freeze.wav; sourceTree = "<group>"; };
+		7C67039311B24489A6ACB8F9 /* 340Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Lift.wav; sourceTree = "<group>"; };
+		21347B9E7F274F2E9F241E4D /* 340Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Music.wav; sourceTree = "<group>"; };
+		CB312010D1924FEFA8EBEBAF /* 340Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Pinch.wav; sourceTree = "<group>"; };
+		E169E5DC8C434B10B3FC924A /* 340Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Shake.wav; sourceTree = "<group>"; };
+		3FFEB9AE43DA4A3B89CB6A33 /* 340Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 340Smack.wav; sourceTree = "<group>"; };
+		44C7CA8F20F6436B9B4B1527 /* 360Freeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Freeze.wav; sourceTree = "<group>"; };
+		3429811839894B1DBD6BAEC9 /* 360Lift.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Lift.wav; sourceTree = "<group>"; };
+		71254EDEA95D40CA8146B557 /* 360Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Music.wav; sourceTree = "<group>"; };
+		3D6AB8D01DFE4397B6CCAF8D /* 360Pinch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Pinch.wav; sourceTree = "<group>"; };
+		9C72A819FB034B11B6F1DF73 /* 360Shake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Shake.wav; sourceTree = "<group>"; };
+		6BC4E9A89F78427BAB2757B5 /* 360Smack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 360Smack.wav; sourceTree = "<group>"; };
+		CAFBC6DE344C42DE8AF4893F /* Credits.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mpeg; path = Credits.mp3; sourceTree = "<group>"; };
+		0DF8F54EDEA34081BE0FBD55 /* HighScoreHappy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mpeg; path = HighScoreHappy.mp3; sourceTree = "<group>"; };
+		267E44ED6ED94E16A7C39DF8 /* HighScoreSad.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mpeg; path = HighScoreSad.mp3; sourceTree = "<group>"; };
+		A329C5E5F0C646328157DCDF /* confirm1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = confirm1.wav; sourceTree = "<group>"; };
+		A2478180B0ED4F6FA16758E4 /* confirm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = confirm2.wav; sourceTree = "<group>"; };
+		EEE669AFCF70407C92D4D475 /* confirm3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = confirm3.wav; sourceTree = "<group>"; };
+		FCE685A525524B5BBA961E97 /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
+		8BA3DBEA1BB14E11A30634CE /* interlude.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = interlude.wav; sourceTree = "<group>"; };
+		F8108C844A8F444DAE7FF0EA /* introduction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mpeg; path = introduction.mp3; sourceTree = "<group>"; };
+		4958D8541DBE49F2BA83D621 /* newhighscore.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = newhighscore.wav; sourceTree = "<group>"; };
+		8ABDADBFC86641BBA013DB99 /* pass_me.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pass_me.wav; sourceTree = "<group>"; };
+		CB97BDC69BBA4E369622E81E /* uni05_53.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = uni05_53.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A904A2738734A668501EB72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2383ACBE0E7045658226C561 = {
+			isa = PBXGroup;
+			children = (
+				3620825374914D70BBB85265 /* SmackMeRebuild */,
+				32C374E0770240E9BBD3CAC0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32C374E0770240E9BBD3CAC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0DAF6018EDB4B55AB2768EC /* SmackMeRebuild.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3620825374914D70BBB85265 /* SmackMeRebuild */ = {
+			isa = PBXGroup;
+			children = (
+				C16F419D0F9147E29A297C08 /* AppDelegate.swift */,
+				4891304BB3DA4CF998BBC3FC /* SceneDelegate.swift */,
+				EEB4D7CF4558441CB10A62AC /* Info.plist */,
+				4A07790EA9E54070B4919FDD /* Assets.xcassets */,
+				5C1C542C84D54DECAE44A7D7 /* Controllers */,
+				6C75668EEB5D4C9685A4C3EA /* Models */,
+				E4129B4A7DB940059B47AA33 /* Utilities */,
+				6145D1D4EA9A47A88367B7CF /* Images */,
+				460C02857E6F41F7A9F3629A /* Sounds */,
+			);
+			name = SmackMeRebuild;
+			path = SmackMeRebuild;
+			sourceTree = "<group>";
+		};
+		5C1C542C84D54DECAE44A7D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BD20FF9EBDBC47358D14FF39 /* MainMenuViewController.swift */,
+				C3DA0C995F49451CBE0E1FE4 /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6C75668EEB5D4C9685A4C3EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E02B4002C2A4E28BBB3906D /* GameModels.swift */,
+				E2CF0F4D685F43F5A9901852 /* GameEngine.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E4129B4A7DB940059B47AA33 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0C09250FA88B4044928B3A63 /* GestureManager.swift */,
+				BB5A25D2EF064398B1DF99A2 /* AudioManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		6145D1D4EA9A47A88367B7CF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A4150F0E7C4D421F8BC10414 /* Default.png */,
+				45963B55FD7F42F6AC2DF873 /* Icon.png */,
+				F6C52D0372D34B53A84E1C38 /* back_button.png */,
+				9BE11C5DD1864463B91C167B /* button_done.png */,
+				2A4D94FA08794F05995CEE58 /* checkmark.png */,
+				053A70274F6042F1A6B4BE70 /* command_liftme.png */,
+				70064992AEF5497896ACF40A /* command_pinchme.png */,
+				9E5859572A98441FA093E6E9 /* command_shakeme.png */,
+				E9CED1D2A97C45F5B924BBE8 /* command_smackme.png */,
+				964B2193921240689D3270B8 /* lock_a.png */,
+				BFD34E1154D246A1900EB661 /* lock_b.png */,
+				DF5AE071DBD94845A92BEE10 /* smackme_robot_bg_07_pulse&ripples.png */,
+				39D25BB736044D64BF3852F5 /* smackme_robot_bg_biohazard.png */,
+				FAAC49D4FF5D462294C9D0D2 /* smackme_robot_bg_circles.png */,
+				67648BA156B74B02AA4EB241 /* smackme_robot_bg_nuclear.png */,
+				073935C44F5540578F9BAAF6 /* smackme_robot_bg_robotpattern.png */,
+				243F0DDAC5324BE8ACC1F115 /* smackme_robot_bg_sprokets.png */,
+				BE6694E7C7C24F8DAB6B8326 /* smackme_robot_bg_starburst.png */,
+				921FE1FEA2BF4BA6ADE49E09 /* smackme_robot_congratulations.png */,
+				1F2DB065FAD44171BB488B00 /* smackme_robot_congratulations2_trans.png */,
+				9D9B7A31D803474299760920 /* smackme_robot_congratulations3_trans.png */,
+				F2DA988402774A6EBC300AF6 /* smackme_robot_congratulations_trans.png */,
+				7BB3468209A744AF9A8F1F20 /* smackme_robot_credits.png */,
+				0C24AD94E6F14F749707E8EA /* smackme_robot_freeze01_trans.png */,
+				88156BE3D43441D79511963A /* smackme_robot_freeze02_trans.png */,
+				D91AEF1E0FFC43CA82885A5D /* smackme_robot_hiscore_congratulations.png */,
+				A6A1BD86A40949F8B99E4A0B /* smackme_robot_hiscore_enter.png */,
+				195DA426EBA64CACA6C7FF8D /* smackme_robot_liftme01_trans.png */,
+				5F26F8982C324C8F8D63A9B4 /* smackme_robot_liftme02_trans.png */,
+				F931E540B9A544A7ABDAD29C /* smackme_robot_menu6a_background.png */,
+				6104F19AEDC7456A8D1799E0 /* smackme_robot_menu6b_background.png */,
+				9AE26E7919814850AC89ADD6 /* smackme_robot_menu6c_background.png */,
+				EB9E08FB81EB43B2A5376DCA /* smackme_robot_passme01.png */,
+				0334109F5D9E4ADB829BE3B8 /* smackme_robot_passme02.png */,
+				A0E6A47007C14EB3B94C0777 /* smackme_robot_pinchme01_trans.png */,
+				520C6B2522384BA1926303BD /* smackme_robot_pinchme02_trans.png */,
+				B19B2194C9174BC0B3D8484B /* smackme_robot_round01_trans.png */,
+				A0944A9A25D64CAABA85EA85 /* smackme_robot_round02_trans.png */,
+				1F987CD7EFF14C72A7BFBC32 /* smackme_robot_round03_trans.png */,
+				578A2B4D98354E9A8EC589EE /* smackme_robot_round04_trans.png */,
+				6B815A3058C14A8895645215 /* smackme_robot_shakeme01_trans.png */,
+				3AFAF21F93384E0D8A2125B2 /* smackme_robot_shakeme02_trans.png */,
+				8AEB27D5F12841F097308745 /* smackme_robot_smackme01_trans.png */,
+				A61804F6FDFA476E87EB3E96 /* smackme_robot_smackme02_trans.png */,
+				3BB24083B441477EAC7E2D6F /* smackme_robot_tutorial_freezeme.png */,
+				67622E193238445B8A3584B0 /* smackme_robot_tutorial_liftme.png */,
+				4C68D2B10D134173895B993D /* smackme_robot_tutorial_pinchme.png */,
+				CC3D8EFE58F14D57BDB86479 /* smackme_robot_tutorial_shakeme.png */,
+				05BEB6F9191848D68DD1A5F1 /* smackme_robot_tutorial_smackme.png */,
+				887B0E1E28AD4D4CB2CD0D61 /* top_round_and_progress_bar_background.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		460C02857E6F41F7A9F3629A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9F66687705A74FAEA9967F45 /* 100Freeze.wav */,
+				9E1A49C07E024C399A181090 /* 100Lift.wav */,
+				089BE1964E3142BCA8F8EC86 /* 100Music.wav */,
+				C9239BE6444043DCBCC0CFA9 /* 100Pinch.wav */,
+				13970B6BC64B45C6B56FE033 /* 100Shake.wav */,
+				6EB2F0A7E90041C2B9819F04 /* 100Smack.wav */,
+				0BBC1FB9B73641CAB21DEAA5 /* 100percent.wav */,
+				6AB6D16DE4074C299B9DE7B3 /* 140Freeze.wav */,
+				90158EF132F2498CA7E275F2 /* 140Lift.wav */,
+				03B56F3550C84F5B9F50AC9A /* 140Music.wav */,
+				DFC61B6AEED34AF2AFE52D2F /* 140Pinch.wav */,
+				3941CEE7567049E0AC500DF3 /* 140Shake.wav */,
+				0A7E911C27B24421A12E9083 /* 140Smack.wav */,
+				1563EDD2104742A1A43A9296 /* 160Freeze.wav */,
+				3B70E21EAB2D4FE5BA0E429B /* 160Lift.wav */,
+				98108EF4E43E4BF4A9ADB476 /* 160Music.wav */,
+				5F4829C2ED764F6C9935BA8C /* 160Pinch.wav */,
+				D0BFB48684EB4066882C306A /* 160Shake.wav */,
+				3AFD194BE9C749458B81126F /* 160Smack.wav */,
+				9C0FF9E6A1524EE59D007AB6 /* 180Freeze.wav */,
+				E822720471404E45B0EE629F /* 180Lift.wav */,
+				C7D6F28CA18F405EBE61FB98 /* 180Music.wav */,
+				3FC9E5D3487F4BA6A88A5E1E /* 180Pinch.wav */,
+				A3820CEEEA964375ABE8106E /* 180Shake.wav */,
+				F98A1F45FF5D46299C9EC3DE /* 180Smack.wav */,
+				4B46EBBE3D7749219DEFEBB4 /* 200Freeze.wav */,
+				3BFC290616064EC3944221F6 /* 200Lift.wav */,
+				67E4E2E6ABB646F89B9EEC50 /* 200Music.wav */,
+				482EF136A4B34DAB8FAE3668 /* 200Pinch.wav */,
+				7A0B6CC6E8424C74AE0E17FE /* 200Shake.wav */,
+				A9A8253EB124429CBFDDAF4D /* 200Smack.wav */,
+				2F8C1B6CD24D4183A3D3ED76 /* 220Freeze.wav */,
+				6C1DF49D37FA4B809D0E13C7 /* 220Lift.wav */,
+				6A63CEB8632747B7B13E4CBE /* 220Music.wav */,
+				492494F23DCB4AA09C209AC3 /* 220Pinch.wav */,
+				7EE7E431A4034DD0B77657E3 /* 220Shake.wav */,
+				5BE29807414D4E6AB716F2CD /* 220Smack.wav */,
+				1E97627ED71A446F83AD616B /* 240Freeze.wav */,
+				B3A17099930047CFAD82122A /* 240Lift.wav */,
+				70170FA103334213A93E6A02 /* 240Music.wav */,
+				2AED0EA3A0D34E06A7E6D0E7 /* 240Pinch.wav */,
+				698454D83B454B33870D9E37 /* 240Shake.wav */,
+				64363A10A11D4968B18DB8D4 /* 240Smack.wav */,
+				641E92B0D62E48D19CE1AD47 /* 260Freeze.wav */,
+				BC4C246790AA4F6F8E12762B /* 260Lift.wav */,
+				704A6ABE584542E1B6259C1B /* 260Music.wav */,
+				8EBBD92B67894B5FBBD15CA5 /* 260Pinch.wav */,
+				53CB3648BB2C4F2E92076085 /* 260Shake.wav */,
+				FAEF28A366854CC19363D5B1 /* 260Smack.wav */,
+				E0CF64719C5144CBA19A98BC /* 280Freeze.wav */,
+				C989909255514A538F142EF0 /* 280Lift.wav */,
+				86E4599CC1884F8DAF5F0771 /* 280Music.wav */,
+				BF5E961F51D945B8A61B3F41 /* 280Pinch.wav */,
+				D909D7B50A754AC9B9A27CEA /* 280Shake.wav */,
+				BB1618E1F6334F3E8B9526D2 /* 280Smack.wav */,
+				4139210324D243D3BF399626 /* 300Freeze.wav */,
+				1368D84F774F4E5384FE75A4 /* 300Lift.wav */,
+				B3DF59C2AB3E4044A787F746 /* 300Music.wav */,
+				E05DE06668EF40D19FEFB965 /* 300Pinch.wav */,
+				4BAE6BBFC66243ECAFEBEB1F /* 300Shake.wav */,
+				EDFBCC81F0CE456AA999B39D /* 300Smack.wav */,
+				31C5A604390A4C3DB5AEE039 /* 320Freeze.wav */,
+				0FEA5FB667DC40F0AE761B0C /* 320Lift.wav */,
+				423BCB90E0004E5F9C4010E5 /* 320Music.wav */,
+				0F8C8542D45746B488A52722 /* 320Pinch.wav */,
+				1BD3E88876744D13B0B27D2B /* 320Shake.wav */,
+				099F4DE6260649EB93792E9C /* 320Smack.wav */,
+				76044258FA394B5EA45D5631 /* 340Freeze.wav */,
+				7C67039311B24489A6ACB8F9 /* 340Lift.wav */,
+				21347B9E7F274F2E9F241E4D /* 340Music.wav */,
+				CB312010D1924FEFA8EBEBAF /* 340Pinch.wav */,
+				E169E5DC8C434B10B3FC924A /* 340Shake.wav */,
+				3FFEB9AE43DA4A3B89CB6A33 /* 340Smack.wav */,
+				44C7CA8F20F6436B9B4B1527 /* 360Freeze.wav */,
+				3429811839894B1DBD6BAEC9 /* 360Lift.wav */,
+				71254EDEA95D40CA8146B557 /* 360Music.wav */,
+				3D6AB8D01DFE4397B6CCAF8D /* 360Pinch.wav */,
+				9C72A819FB034B11B6F1DF73 /* 360Shake.wav */,
+				6BC4E9A89F78427BAB2757B5 /* 360Smack.wav */,
+				CAFBC6DE344C42DE8AF4893F /* Credits.mp3 */,
+				0DF8F54EDEA34081BE0FBD55 /* HighScoreHappy.mp3 */,
+				267E44ED6ED94E16A7C39DF8 /* HighScoreSad.mp3 */,
+				A329C5E5F0C646328157DCDF /* confirm1.wav */,
+				A2478180B0ED4F6FA16758E4 /* confirm2.wav */,
+				EEE669AFCF70407C92D4D475 /* confirm3.wav */,
+				FCE685A525524B5BBA961E97 /* fail.wav */,
+				8BA3DBEA1BB14E11A30634CE /* interlude.wav */,
+				F8108C844A8F444DAE7FF0EA /* introduction.mp3 */,
+				4958D8541DBE49F2BA83D621 /* newhighscore.wav */,
+				8ABDADBFC86641BBA013DB99 /* pass_me.wav */,
+				CB97BDC69BBA4E369622E81E /* uni05_53.ttf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4DED6BAF6D0F4F6BB3747229 /* SmackMeRebuild */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C89EEB483504630BEFFBA46 /* Build configuration list for PBXNativeTarget "SmackMeRebuild" */;
+			buildPhases = (
+				6A7B1B7FA1D64B649033D615 /* Sources */,
+				1280FC3143224A27B1A452D7 /* Resources */,
+				3A904A2738734A668501EB72 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmackMeRebuild;
+			productName = SmackMeRebuild;
+			productReference = A0DAF6018EDB4B55AB2768EC /* SmackMeRebuild.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		911735DEFE984070B2D9326A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					4DED6BAF6D0F4F6BB3747229 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = FA346647847049C59901E29D /* Build configuration list for PBXProject "SmackMeRebuild" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2383ACBE0E7045658226C561;
+			productRefGroup = 32C374E0770240E9BBD3CAC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4DED6BAF6D0F4F6BB3747229 /* SmackMeRebuild */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1280FC3143224A27B1A452D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2487D50BF096416CACE25CE4 /* Assets.xcassets in Resources */,
+				007CB9B834E9413586F1BCCD /* Default.png in Resources */,
+				87FFA7A3A8A04DB0846C2840 /* Icon.png in Resources */,
+				F5FA40874BD24B63A87CC89B /* back_button.png in Resources */,
+				5FCF31C4BB4D4B9FA40773A1 /* button_done.png in Resources */,
+				45B9E9DCA3A64781B1E0C6E9 /* checkmark.png in Resources */,
+				9B1C76DD614245B6A1D214D2 /* command_liftme.png in Resources */,
+				7DC9F0C20E724E1B82C3B2F4 /* command_pinchme.png in Resources */,
+				40801E274AF84DD99A09A051 /* command_shakeme.png in Resources */,
+				BC387E1249314DC895E88487 /* command_smackme.png in Resources */,
+				1A3C42913DC2401D8CB46C89 /* lock_a.png in Resources */,
+				39ECB4C7C63D4B3C9616C206 /* lock_b.png in Resources */,
+				FDE1E276AA2E422C9843395A /* smackme_robot_bg_07_pulse&ripples.png in Resources */,
+				63F8F78332CE43039E54C068 /* smackme_robot_bg_biohazard.png in Resources */,
+				576A55A96725491BA06C5CAA /* smackme_robot_bg_circles.png in Resources */,
+				1A5DBEADF32F452694695E57 /* smackme_robot_bg_nuclear.png in Resources */,
+				A1170C5BA11849ADAAB795D5 /* smackme_robot_bg_robotpattern.png in Resources */,
+				1BEB302E99134C90A2346434 /* smackme_robot_bg_sprokets.png in Resources */,
+				B6E5DD577F954332B6A1B325 /* smackme_robot_bg_starburst.png in Resources */,
+				AE6DB7D235734402A3D88C57 /* smackme_robot_congratulations.png in Resources */,
+				1A721545EBAB4307AFCA6028 /* smackme_robot_congratulations2_trans.png in Resources */,
+				51B3D67995EB4459BDB0692F /* smackme_robot_congratulations3_trans.png in Resources */,
+				86DD9DA2F2A84E208666E82C /* smackme_robot_congratulations_trans.png in Resources */,
+				49DDA14B00BB48A2994D1578 /* smackme_robot_credits.png in Resources */,
+				BA9EA7A6574244BB83709250 /* smackme_robot_freeze01_trans.png in Resources */,
+				7A01330F9BE14F699F08756C /* smackme_robot_freeze02_trans.png in Resources */,
+				371246C3A07A424BB57D9B4B /* smackme_robot_hiscore_congratulations.png in Resources */,
+				1B53D0D00F28487486CD382B /* smackme_robot_hiscore_enter.png in Resources */,
+				7F09AFA3F7C8455EBC16FEBC /* smackme_robot_liftme01_trans.png in Resources */,
+				66EE17AC607A4BCCBEC724B9 /* smackme_robot_liftme02_trans.png in Resources */,
+				94A1AAA1A7B649F48820055E /* smackme_robot_menu6a_background.png in Resources */,
+				381BC4C3DCA4478F829EBD08 /* smackme_robot_menu6b_background.png in Resources */,
+				B443846043F243DD8549264E /* smackme_robot_menu6c_background.png in Resources */,
+				3557A8E2F0564631B3CB9810 /* smackme_robot_passme01.png in Resources */,
+				A5F706AB7AAC4482AE7D0C97 /* smackme_robot_passme02.png in Resources */,
+				8E829B0F36AC4B8D8A01843E /* smackme_robot_pinchme01_trans.png in Resources */,
+				1250FD32A3D24234811C2CDF /* smackme_robot_pinchme02_trans.png in Resources */,
+				7E18CBF5D4614DAD87D3554B /* smackme_robot_round01_trans.png in Resources */,
+				5169EBC0245A4DC39AE5061C /* smackme_robot_round02_trans.png in Resources */,
+				C8A72B97032B44F89AECD2FA /* smackme_robot_round03_trans.png in Resources */,
+				48623F60C26A4F04AF406340 /* smackme_robot_round04_trans.png in Resources */,
+				15D24D2CBFF947C38FAAC1C5 /* smackme_robot_shakeme01_trans.png in Resources */,
+				6C126855DF914F07BBC86396 /* smackme_robot_shakeme02_trans.png in Resources */,
+				4E13E051EA594865980253FD /* smackme_robot_smackme01_trans.png in Resources */,
+				C2438D8F5119433181D40430 /* smackme_robot_smackme02_trans.png in Resources */,
+				7109BE7CEFC544E197E95FC0 /* smackme_robot_tutorial_freezeme.png in Resources */,
+				15802A03DD9E49DAAD5142C1 /* smackme_robot_tutorial_liftme.png in Resources */,
+				BC719FF1BB8B4BD1A05E112E /* smackme_robot_tutorial_pinchme.png in Resources */,
+				4D899736BA9940F5B4294916 /* smackme_robot_tutorial_shakeme.png in Resources */,
+				9F0033C4EB36493C83A970D9 /* smackme_robot_tutorial_smackme.png in Resources */,
+				9AECE5FEA6CD4B4E9F78C023 /* top_round_and_progress_bar_background.png in Resources */,
+				649083DD89EB4B7181275CBA /* 100Freeze.wav in Resources */,
+				9755BAF0C259480FBC34FDF6 /* 100Lift.wav in Resources */,
+				B1ABF28A4B1F4035BBB73E61 /* 100Music.wav in Resources */,
+				65D717EE198946FCB02B3C39 /* 100Pinch.wav in Resources */,
+				1F67377841644F65A304D879 /* 100Shake.wav in Resources */,
+				FAE7CC1387604FDD86B70EF2 /* 100Smack.wav in Resources */,
+				99D456BD61A2417F8BB9C006 /* 100percent.wav in Resources */,
+				37058E84B4C241B4B789AF79 /* 140Freeze.wav in Resources */,
+				4F4921BFDE3C4891BA26B4C0 /* 140Lift.wav in Resources */,
+				C53E194F05104EA18EEA6C9A /* 140Music.wav in Resources */,
+				8755A3E41301474B84C2B890 /* 140Pinch.wav in Resources */,
+				8B50711BEF604EACA8EF6CA7 /* 140Shake.wav in Resources */,
+				7634A56CE7E64571ABD8D179 /* 140Smack.wav in Resources */,
+				B0C80AEA36D44933931018B8 /* 160Freeze.wav in Resources */,
+				5289B6E46FF648898E482B5D /* 160Lift.wav in Resources */,
+				8CC692DC9897421889C75263 /* 160Music.wav in Resources */,
+				A855A6452AF641DEB3FF11EB /* 160Pinch.wav in Resources */,
+				3E8942B855F54CE69D5D7C92 /* 160Shake.wav in Resources */,
+				D7D71AED84C4405AADCC58AA /* 160Smack.wav in Resources */,
+				7C2049E4045D4011A66CEE44 /* 180Freeze.wav in Resources */,
+				01D82B9AD301430C81FA175E /* 180Lift.wav in Resources */,
+				3841A4547BC44DA08BD52EC1 /* 180Music.wav in Resources */,
+				69572910764C4CF09A3181FD /* 180Pinch.wav in Resources */,
+				F1699EC130D14F9DB1BBBDE8 /* 180Shake.wav in Resources */,
+				7B2112A694C2442184AF5565 /* 180Smack.wav in Resources */,
+				395AECA7A972428B90B716FD /* 200Freeze.wav in Resources */,
+				72C3A60890E44749944118B7 /* 200Lift.wav in Resources */,
+				4518F8E42F6D4BBBB69BC7E4 /* 200Music.wav in Resources */,
+				89530CBDBBD040E9B60E636F /* 200Pinch.wav in Resources */,
+				7FACDCB7AB6647C080FA4739 /* 200Shake.wav in Resources */,
+				9E87C314FF3E43AB95756CA7 /* 200Smack.wav in Resources */,
+				665DD4F86ECF4E93BEB70F3A /* 220Freeze.wav in Resources */,
+				81BE0ED0D7D549D1AC44F1DD /* 220Lift.wav in Resources */,
+				A75719A4148F4F2284CB108E /* 220Music.wav in Resources */,
+				68D55D90477A4D7E9D1917F3 /* 220Pinch.wav in Resources */,
+				5CC7822147094B8E99C50FF2 /* 220Shake.wav in Resources */,
+				D8BB8ECF04934AC7A7743B03 /* 220Smack.wav in Resources */,
+				D8E792AC3393419D84206876 /* 240Freeze.wav in Resources */,
+				35E4A1E72C0048A498BF1997 /* 240Lift.wav in Resources */,
+				F9AA02BE2FF54EA78884C16B /* 240Music.wav in Resources */,
+				DBBC723E7C374CDF8D8F674D /* 240Pinch.wav in Resources */,
+				B454F02C8820424B91373301 /* 240Shake.wav in Resources */,
+				EF6BA1C759A34D2188FC8FFF /* 240Smack.wav in Resources */,
+				C2BA18B7621643F380B2799E /* 260Freeze.wav in Resources */,
+				7465D008E2494F39B686724C /* 260Lift.wav in Resources */,
+				BEB889191D4E49B79A66D557 /* 260Music.wav in Resources */,
+				FC3E59E93ED14122859DC550 /* 260Pinch.wav in Resources */,
+				0001467F5D3B45488F471BB5 /* 260Shake.wav in Resources */,
+				C3E5876317D74F89BF576C88 /* 260Smack.wav in Resources */,
+				75136F65047342668FC4B8BA /* 280Freeze.wav in Resources */,
+				54F7338B5E444D508F0DAB05 /* 280Lift.wav in Resources */,
+				8EA24A8BF5A0445A9F750D81 /* 280Music.wav in Resources */,
+				38D04487C29C4C27898A9F60 /* 280Pinch.wav in Resources */,
+				CCFD71AC96CF4A7B962D706B /* 280Shake.wav in Resources */,
+				4ACFDEB5D4F94958BD8D52E7 /* 280Smack.wav in Resources */,
+				1077EBB3C63347C68C82E082 /* 300Freeze.wav in Resources */,
+				51253BCF066F41139FD1DEF5 /* 300Lift.wav in Resources */,
+				ED29C8267E414486B4A73C9D /* 300Music.wav in Resources */,
+				DFA789C9665B4840A9216656 /* 300Pinch.wav in Resources */,
+				8B65DFDDB76F4DCEAF65687E /* 300Shake.wav in Resources */,
+				B78BF2A30E6A4D1AACAB1DA9 /* 300Smack.wav in Resources */,
+				51356192D1A147EA8A6DBE1D /* 320Freeze.wav in Resources */,
+				AEA6D6D448A24BEE8C0E1356 /* 320Lift.wav in Resources */,
+				A39C4B6AF85C4E3B82E9D0D0 /* 320Music.wav in Resources */,
+				277EC15957884E08A822645A /* 320Pinch.wav in Resources */,
+				EE929D5167954EE59FEA584B /* 320Shake.wav in Resources */,
+				665B26BDCE05458B8029C6F0 /* 320Smack.wav in Resources */,
+				F0C24DA05433412896D22CD9 /* 340Freeze.wav in Resources */,
+				1546EF0D36324C68861BA593 /* 340Lift.wav in Resources */,
+				C15D0D9F494942F49F636CD0 /* 340Music.wav in Resources */,
+				8E08F682859D449992DAB7C7 /* 340Pinch.wav in Resources */,
+				8C63B3D3185A402198017916 /* 340Shake.wav in Resources */,
+				2E7AFA74135D42CEB6AB9E54 /* 340Smack.wav in Resources */,
+				EEA500457B2E46C68F2398F3 /* 360Freeze.wav in Resources */,
+				1561DB6FC5DD42F894426EB3 /* 360Lift.wav in Resources */,
+				633FF6D57204428387E27FA8 /* 360Music.wav in Resources */,
+				9B389F21241245C9B9A38E0A /* 360Pinch.wav in Resources */,
+				4E2506B98DD140E59F2CE0E5 /* 360Shake.wav in Resources */,
+				6324352BB7FA47ADBB845BF0 /* 360Smack.wav in Resources */,
+				2141003383244B34941F110B /* Credits.mp3 in Resources */,
+				A8AA356FB97F4CBFB2CA0E92 /* HighScoreHappy.mp3 in Resources */,
+				4C56CA159336458BB9DDF230 /* HighScoreSad.mp3 in Resources */,
+				EF174CEA508742FA9A1C8296 /* confirm1.wav in Resources */,
+				15926740327E4301809DED25 /* confirm2.wav in Resources */,
+				D1828060233D43A7880F9456 /* confirm3.wav in Resources */,
+				634127BE05F7473AB41789DA /* fail.wav in Resources */,
+				912B414AA08B4C28BEC1A328 /* interlude.wav in Resources */,
+				B9D62F0166DB4885AAF7ABAD /* introduction.mp3 in Resources */,
+				73905987EB3D4871AF7EE418 /* newhighscore.wav in Resources */,
+				4FD9260A8A684CB8A7DD5359 /* pass_me.wav in Resources */,
+				D9B95E3599FC488C8367B9D3 /* uni05_53.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A7B1B7FA1D64B649033D615 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				589B5FD2AD1443CCBD7F918B /* AppDelegate.swift in Sources */,
+				58243D07EED9454485D7A70F /* SceneDelegate.swift in Sources */,
+				B5B2DF56E4464D48A3E91BED /* MainMenuViewController.swift in Sources */,
+				5962C0347A284F4C875D3962 /* GameViewController.swift in Sources */,
+				DCDDFE74CB1A404FA28CB1A2 /* GameModels.swift in Sources */,
+				DD50840DAC1E462CB092616A /* GameEngine.swift in Sources */,
+				6043D7CE37254D4D9B3FBEE9 /* GestureManager.swift in Sources */,
+				941C70C67A9F49618914F7E5 /* AudioManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1B20F6D272F246D8BF34542C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1","$(inherited)",);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4876A71507E347D481B39819 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACEE823284CF4185A8BBD33E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGJQ5DZFK2;
+				INFOPLIST_FILE = SmackMeRebuild/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)","@executable_path/Frameworks",);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Quinton.smackme;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7CD12B62B3A43B28BE71C7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGJQ5DZFK2;
+				INFOPLIST_FILE = SmackMeRebuild/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)","@executable_path/Frameworks",);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Quinton.smackme;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA346647847049C59901E29D /* Build configuration list for PBXProject "SmackMeRebuild" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B20F6D272F246D8BF34542C /* Debug */,
+				4876A71507E347D481B39819 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C89EEB483504630BEFFBA46 /* Build configuration list for PBXNativeTarget "SmackMeRebuild" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACEE823284CF4185A8BBD33E /* Debug */,
+				B7CD12B62B3A43B28BE71C7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 911735DEFE984070B2D9326A /* Project object */;
+}
