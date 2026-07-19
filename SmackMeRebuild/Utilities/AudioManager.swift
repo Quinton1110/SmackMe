@@ -115,7 +115,9 @@ final class AudioManager: NSObject, AVAudioPlayerDelegate {
 
     // MARK: - Action Cue (robot voice: "Smack me!", etc.) - one at a time
 
-    /// Play the BPM-matched cue file at its recorded speed.
+    /// Play the BPM-matched cue file at its recorded speed. If a confirm sound is
+    /// still playing, hold the cue until it finishes so the confirm is never cut
+    /// off and the two never talk over each other.
     func playActionCue(_ soundName: String) {
         actionCuePlayer?.stop()
         actionCuePlayer = nil
@@ -128,8 +130,24 @@ final class AudioManager: NSObject, AVAudioPlayerDelegate {
         do {
             let player = try AVAudioPlayer(contentsOf: url)
             player.prepareToPlay()
+            // Set it now so its duration is available immediately, even if we
+            // hold playback for a moment.
             actionCuePlayer = player
-            player.play()
+
+            if let fb = feedbackPlayer, fb.isPlaying {
+                // A confirm sound is still going: hold the cue briefly so they
+                // don't collide, but cap the wait hard. Letting a full confirm
+                // delay the cue was eating into the response window and helping
+                // make lift and shake miss.
+                let remaining = min(0.12, max(0, fb.duration - fb.currentTime))
+                DispatchQueue.main.asyncAfter(deadline: .now() + remaining) { [weak self] in
+                    if self?.actionCuePlayer === player, player.isPlaying == false {
+                        player.play()
+                    }
+                }
+            } else {
+                player.play()
+            }
         } catch {
             print("Failed to play action cue \(soundName): \(error)")
         }

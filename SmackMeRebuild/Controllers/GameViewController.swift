@@ -206,6 +206,10 @@ class GameViewController: UIViewController {
         gestureManager = GestureManager()
         gestureManager.delegate = self
         gestureManager.setup(on: view)
+        // The engine resolves a freeze by checking stillness at a beat boundary.
+        gameEngine.isStillSince = { [weak self] since in
+            self?.gestureManager.hasBeenStill(since: since) ?? false
+        }
     }
 
     @objc private func handleVoiceOverStatusDidChange() {
@@ -241,12 +245,22 @@ class GameViewController: UIViewController {
     }
 
     private func handleGameplayTouchBegan() {
-        guard gameEngine.gameState == .playing,
-              gameEngine.currentAction == .freeze else { return }
-        // Cancel freeze detection and treat as wrong action as soon as the
-        // player touches the gameplay surface.
-        gestureManager.resetFreezeState()
-        let _ = gameEngine.processAction(.smack)
+        guard gameEngine.gameState == .playing else { return }
+        let expected = gameEngine.currentAction
+        if expected == .freeze {
+            // Touching the gameplay surface during a freeze is a wrong action: game over.
+            let _ = gameEngine.processAction(.smack)
+        } else if expected == .smack {
+            // A touch IS the smack. Fire on touch-down so it registers instantly,
+            // instead of waiting for the tap recognizer to see a clean quick tap
+            // and release, which a natural, slightly held tap often isn't in time.
+            let success = gameEngine.processAction(.smack)
+            if success {
+                // Play the confirm sound here too, since firing on touch-down
+                // bypasses the gestureDetected path that normally plays it.
+                AudioManager.shared.playSound(GameAction.smack.confirmSound)
+            }
+        }
     }
 
     private func setupBindings() {
@@ -256,14 +270,16 @@ class GameViewController: UIViewController {
                 self?.updateUI(for: action)
                 if action != nil {
                     let now = Date()
-                    // Lift waits for the full recorded cue so residual motion
-                    // from the previous action cannot trigger the next one early.
-                    let cueDuration = AudioManager.shared.actionCueDuration
-                    self?.cueEndTime = now.addingTimeInterval(cueDuration)
+                    // Small grace so the previous action's residual motion doesn't
+                    // trigger this one, but NOT the full cue length: gating lift for
+                    // the whole spoken cue left almost no time to actually lift
+                    // inside the slot, which made lift nearly impossible.
+                    self?.cueEndTime = now.addingTimeInterval(0.2)
                     // Shake: short fixed grace period (deliberate burst, less residual risk)
                     self?.shakeReadyTime = now.addingTimeInterval(0.15)
-                    // Reset freeze state so detection starts fresh for each new action
-                    self?.gestureManager.resetFreezeState()
+                    // Start the slot with a clean motion cooldown so continuous
+                    // shaking can't swallow the shake this slot needs.
+                    self?.gestureManager.resetMotionCooldown()
                 }
             }
             .store(in: &cancellables)
@@ -307,13 +323,7 @@ class GameViewController: UIViewController {
                     self.startLevelMusic()
                     let levelNum = self.gameEngine.currentLevel + 1
                     let bpm = self.gameEngine.currentLevelConfig.bpm
-                    let beatInterval = self.gameEngine.currentLevelConfig.beatInterval
-                    // Scale freeze duration with BPM: 1.0s at slow tempos,
-                    // shorter at fast tempos (2 beats, min 0.3s).
-                    // Combined with the 1-beat gap after freeze, total cycle stays
-                    // well within actionDeadline at every BPM.
-                    self.gestureManager.freezeDuration = min(1.0, max(beatInterval * 2, 0.3))
-                    print("[GameVC] Level \(levelNum) starting: bpm=\(bpm) music=\(self.gameEngine.currentLevelConfig.music) freezeDur=\(self.gestureManager.freezeDuration)s deadline=\(self.gameEngine.actionDeadline)s")
+                    print("[GameVC] Level \(levelNum) starting: bpm=\(bpm) music=\(self.gameEngine.currentLevelConfig.music) deadline=\(self.gameEngine.actionDeadline)s")
                 case .levelComplete:
                     self.handleLevelComplete()
                 case .gameOver:
@@ -737,24 +747,20 @@ extension GameViewController: GestureManagerDelegate {
                     return
                 }
             }
-            // Freeze: no cue gate needed. Freeze requires deliberate stillness
-            // for freezeDuration seconds, so there's no risk of residual motion
-            // from a prior action triggering it. The freeze timer resets when
-            // each new action appears (resetFreezeState in the binding).
+            // Freeze is not delivered as a discrete gesture. The engine resolves
+            // it at a beat aligned boundary by checking stillness, so it never
+            // reaches this handler.
         }
 
         let success = gameEngine.processAction(action)
 
         if success {
             if expectedAction != .freeze {
-                // Fire-and-forget: play confirm sound without waiting for completion.
-                // This keeps action cadence locked to the beat grid.
+                // Play the confirm sound without blocking. The next cue is driven
+                // by the engine's fixed beat grid, not by when this response lands,
+                // so the cadence stays steady.
                 AudioManager.shared.playSound(expectedAction.confirmSound)
             }
-            // All actions use the same 1-beat gap for consistent rhythm.
-            // Freeze has no confirm sound but the gap keeps cadence predictable
-            // across consecutive freezes (avoids timer-jitter-induced beat skips).
-            gameEngine.continueAfterAction(minBeatGap: 0.5)
         } else {
             // Wrong action - game over.
             // handleGameOver is triggered by the $gameState binding and handles

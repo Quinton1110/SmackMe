@@ -17,26 +17,43 @@ class GestureManager: NSObject {
 
     private let motionManager = CMMotionManager()
     private var lastAcceleration: CMAcceleration?
-    private var freezeTimer: Timer?
-    private var isFrozen = false
 
-    /// How long the player must hold still for freeze. Scales with BPM:
-    /// 1.0s at low BPMs, shorter at high BPMs so freeze remains possible.
-    var freezeDuration: TimeInterval = 1.0
+    /// Timestamp of the most recent movement beyond the stillness threshold.
+    /// Freeze is now resolved by the game engine, which asks hasBeenStill(since:)
+    /// at a beat aligned boundary. Tracking movement continuously (instead of a
+    /// self restarting timer) is what keeps consecutive freezes locked to the
+    /// beat and never requires the player to move between them.
+    private var lastMovementTime: Date?
 
-    private var tapRecognizer: UITapGestureRecognizer!
     private var pinchRecognizer: UIPinchGestureRecognizer!
 
     // Motion cooldown: after ANY gesture fires, block motion gestures for this
-    // duration. Prevents cross-type interference (e.g. tap jolt triggering shake).
-    // Touch gestures (tap/pinch) are deliberate and always allowed - they must
-    // cause game over if the player touches during freeze.
+    // duration. Prevents cross type interference (a shake also tripping the lift
+    // detector, or a tap jolt registering as a shake).
     private var lastGestureTime: Date?
-    private let motionCooldown: TimeInterval = 0.6
+    // Short: long enough to stop one physical gesture from double firing, short
+    // enough that it never swallows the next slot's shake. Also reset at the
+    // start of every cue so each slot begins clean.
+    private let motionCooldown: TimeInterval = 0.3
+
+    // Lift edge detection: only fire on the rising edge (below then above the
+    // threshold) so one physical lift registers once, not on every tick.
+    private var liftIsActive = false
+
+    // True if the current accelerometer sample looked like a shake. Used to keep
+    // that same jerk from also being counted as a lift.
+    private var shakeMotionThisTick = false
 
     /// Record that a gesture just fired. Called by all gesture types.
     private func markGestureFired() {
         lastGestureTime = Date()
+    }
+
+    /// Clear the motion cooldown so each new cue's slot starts fresh. Without
+    /// this, continuous shaking keeps the cooldown perpetually armed and the one
+    /// shake the slot needs gets swallowed, which reads as a miss and a loss.
+    func resetMotionCooldown() {
+        lastGestureTime = nil
     }
 
     /// Returns true if motion gestures should be allowed (cooldown expired).
@@ -48,9 +65,9 @@ class GestureManager: NSObject {
     }
 
     func setup(on view: UIView) {
-        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapRecognizer)
-
+        // Smack is handled by the view controller's touchesBegan (fires on touch
+        // down), so no tap recognizer: a tap recognizer also fired on finger-lift,
+        // producing a second smack that landed on the next cue and lost the game.
         pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         view.addGestureRecognizer(pinchRecognizer)
 
@@ -61,18 +78,11 @@ class GestureManager: NSObject {
         stopMotionDetection()
     }
 
-    @objc private func handleTap(_ recognizer: UITapGestureRecognizer) {
-        if recognizer.state == .ended {
-            // Always fire - touching during freeze must cause game over
-            cancelFreezeDetection()
-            markGestureFired()
-            delegate?.gestureDetected(.smack)
-        }
-    }
-
     @objc private func handlePinch(_ recognizer: UIPinchGestureRecognizer) {
-        if recognizer.state == .ended {
-            cancelFreezeDetection()
+        // Fire the moment the pinch is recognized, not on release. Waiting for
+        // .ended meant a natural or slightly slow pinch often didn't complete
+        // before the slot ended, reading as a miss even though the player pinched.
+        if recognizer.state == .began {
             markGestureFired()
             delegate?.gestureDetected(.pinch)
         }
@@ -85,9 +95,10 @@ class GestureManager: NSObject {
         motionManager.startAccelerometerUpdates(to: .main) { [weak self] (data, error) in
             guard let self = self, let acceleration = data?.acceleration else { return }
 
+            self.shakeMotionThisTick = false
             self.detectShake(acceleration: acceleration)
             self.detectLift(acceleration: acceleration)
-            self.detectFreeze(acceleration: acceleration)
+            self.trackStillness(acceleration: acceleration)
 
             self.lastAcceleration = acceleration
         }
@@ -95,7 +106,6 @@ class GestureManager: NSObject {
 
     private func stopMotionDetection() {
         motionManager.stopAccelerometerUpdates()
-        freezeTimer?.invalidate()
     }
 
     private func detectShake(acceleration: CMAcceleration) {
@@ -105,10 +115,16 @@ class GestureManager: NSObject {
         let deltaY = abs(acceleration.y - last.y)
         let deltaZ = abs(acceleration.z - last.z)
 
-        // Lower threshold for a lighter, quicker shake
-        let shakeThreshold: Double = 1.5
+        // Threshold for a shake. Low enough that a normal, unforceful shake
+        // registers reliably (a missed shake is an instant loss on the grid),
+        // but still well above a smooth lift's frame to frame delta so a lift
+        // never reads as a shake.
+        let shakeThreshold: Double = 1.1
 
         if deltaX > shakeThreshold || deltaY > shakeThreshold || deltaZ > shakeThreshold {
+            // Mark the sample as shake-like even when the cooldown blocks the
+            // fire, so this same jerk can't also register as a lift.
+            shakeMotionThisTick = true
             if shouldAllowMotionGesture() {
                 markGestureFired()
                 delegate?.gestureDetected(.shake)
@@ -117,64 +133,50 @@ class GestureManager: NSObject {
     }
 
     private func detectLift(acceleration: CMAcceleration) {
-        // Orientation-independent lift detection using total acceleration magnitude.
-        // At rest (any orientation), total accel ≈ 1.0g (just gravity).
-        // Lifting the phone adds upward force, briefly pushing total accel > 1.0g.
+        // Orientation independent lift detection using total acceleration magnitude.
+        // At rest (any orientation), total accel is about 1.0g (just gravity).
+        // Lifting the phone adds upward force, briefly pushing total accel above 1.0g.
         // Threshold of 1.3g detects a moderate upward lift regardless of phone angle.
-        // No global cooldown - the VC filters by expected action.
         let totalAccel = sqrt(acceleration.x * acceleration.x +
                               acceleration.y * acceleration.y +
                               acceleration.z * acceleration.z)
-        let liftThreshold: Double = 1.3
+        // Lower threshold so a gentle, natural lift crosses it. At rest total
+        // accel is about 1.0g; a soft lift only reaches about 1.1 to 1.2g.
+        let liftThreshold: Double = 1.15
 
         if totalAccel > liftThreshold {
-            delegate?.gestureDetected(.lift)
+            // Rising edge only: fire once when crossing the threshold, then wait
+            // for the signal to drop back below it before it can fire again.
+            if !liftIsActive {
+                liftIsActive = true
+                delegate?.gestureDetected(.lift)
+            }
+        } else {
+            liftIsActive = false
         }
     }
 
-    private func detectFreeze(acceleration: CMAcceleration) {
+    /// Continuously track movement so the engine can ask whether the player has
+    /// held still. Freeze completion is owned by the engine and beat aligned.
+    private func trackStillness(acceleration: CMAcceleration) {
         guard let last = lastAcceleration else { return }
 
         let deltaX = abs(acceleration.x - last.x)
         let deltaY = abs(acceleration.y - last.y)
         let deltaZ = abs(acceleration.z - last.z)
 
-        // Forgiving threshold - normal hand tremor can exceed 0.05 easily
+        // Forgiving threshold. Normal hand tremor can exceed 0.05 easily.
         let movementThreshold: Double = 0.15
 
-        if deltaX < movementThreshold && deltaY < movementThreshold && deltaZ < movementThreshold {
-            // Only start if not already frozen AND no timer is already running.
-            // Without the freezeTimer check, this fires every 0.1s and keeps
-            // restarting the timer so it never reaches 1 second.
-            if !isFrozen && freezeTimer == nil {
-                startFreezeDetection()
-            }
-        } else {
-            cancelFreezeDetection()
+        if deltaX >= movementThreshold || deltaY >= movementThreshold || deltaZ >= movementThreshold {
+            lastMovementTime = Date()
         }
     }
 
-    /// Reset freeze state so detection starts fresh (called when a new action appears).
-    func resetFreezeState() {
-        isFrozen = false
-        freezeTimer?.invalidate()
-        freezeTimer = nil
-    }
-
-    private func startFreezeDetection() {
-        freezeTimer?.invalidate()
-        // Require freezeDuration seconds of stillness to trigger freeze.
-        // Scales with BPM so freeze remains achievable at high tempos.
-        freezeTimer = Timer.scheduledTimer(withTimeInterval: freezeDuration, repeats: false) { [weak self] _ in
-            guard let self = self else { return }
-            self.isFrozen = true
-            self.delegate?.gestureDetected(.freeze)
-        }
-    }
-
-    private func cancelFreezeDetection() {
-        isFrozen = false
-        freezeTimer?.invalidate()
-        freezeTimer = nil
+    /// True if the player has not moved beyond the stillness threshold since the
+    /// given time. Used by the engine to resolve a freeze at a beat boundary.
+    func hasBeenStill(since date: Date) -> Bool {
+        guard let moved = lastMovementTime else { return true }
+        return moved <= date
     }
 }

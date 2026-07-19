@@ -32,6 +32,18 @@ class GameEngine: ObservableObject {
     private var actionStartTime: Date?
     private var actionsRemainingInLevel: Int = 0
 
+    // MARK: - Grid Cadence
+
+    /// Repeating 20 Hz poll that drives the fixed beat grid and freeze checks.
+    private var gridTimer: Timer?
+    /// Wall clock time of the next grid boundary (when the current slot is judged
+    /// and the next cue is presented).
+    private var nextBoundary: Date?
+    /// Beats between cues. The whole game runs on this fixed grid so the pulse
+    /// stays steady, and a freeze simply fills one slot. This is also the response
+    /// window, so it has to be wide enough to hear the cue and react. One bar.
+    private let slotBeats: Double = 4.0
+
     // MARK: - Multiplayer State
 
     /// Per-player scores (indexed by player number 0..<playerCount)
@@ -92,6 +104,7 @@ class GameEngine: ObservableObject {
         gameState = .idle
         timer?.invalidate()
         timer = nil
+        stopGridPoll()
         currentAction = nil
     }
 
@@ -140,75 +153,128 @@ class GameEngine: ObservableObject {
         scheduleFirstAction()
     }
 
-    // MARK: - Beat-Synced Scheduling
+    // MARK: - Grid Scheduling
 
-    /// Waits for the intro bar (4 beats) using the music player's actual playback
-    /// position, so the first action appears exactly when the main melody starts.
+    /// Set by the VC. Returns true if the player has not moved since the given time.
+    var isStillSince: ((Date) -> Bool)?
+
+    /// After this time in a freeze slot, any movement loses the game. The short
+    /// grace lets motion from the previous action wind down first.
+    private var freezeCutoff: Date?
+
+    /// Align the first cue of a level to the end of the intro bar (or the next
+    /// grid slot if the music is already past it), then run the fixed grid.
     private func scheduleFirstAction() {
         let beatInterval = currentLevelConfig.beatInterval
         let musicTime = AudioManager.shared.musicCurrentTime
-        let targetBeat = 4.0 // end of intro bar
-        let targetTime = targetBeat * beatInterval
-        var delay = targetTime - musicTime
-        if delay < 0.05 { delay = targetTime } // music hasn't started yet
-        print("[GameEngine] scheduleFirstAction: musicTime=\(String(format: "%.3f", musicTime))s targetTime=\(String(format: "%.3f", targetTime))s delay=\(String(format: "%.3f", delay))s")
-        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { [weak self] _ in
-            self?.presentNextAction()
-        }
-    }
-
-    /// Called by the VC immediately after a correct action.
-    /// Snaps the next action to a beat boundary using the music player's actual
-    /// position. `minBeatGap` controls how soon the next action can appear:
-    ///   - 1.0 for actions with a confirm sound (gives time for it to be heard)
-    ///   - 0.0 for freeze (no confirm sound, move to very next beat)
-    func continueAfterAction(minBeatGap: Double = 0.5) {
-        guard gameState == .playing else { return }
-        let beatInterval = currentLevelConfig.beatInterval
-        let musicTime = AudioManager.shared.musicCurrentTime
-        let currentBeat = musicTime / beatInterval
-        // Snap to the next beat boundary that's at least minBeatGap beats away.
-        // With minBeatGap=0.5, actual gap ranges from 0.5-1.5 beats (avg ~1 beat),
-        // preventing the 2-beat gaps that occurred with minBeatGap=1.0.
-        let targetBeat = ceil(currentBeat + minBeatGap)
-        let targetTime = targetBeat * beatInterval
-        var delay = targetTime - musicTime
+        let introBeat = 4.0 // end of the one bar intro
+        var delay = introBeat * beatInterval - musicTime
         if delay < 0.05 {
-            delay += beatInterval
+            // Music already past the intro (continued or looping track). Align to
+            // the next slot boundary instead of stalling for another intro.
+            let currentBeat = musicTime / beatInterval
+            let nextSlot = (floor(currentBeat / slotBeats) + 1) * slotBeats
+            delay = nextSlot * beatInterval - musicTime
+            if delay < 0.05 { delay += slotBeats * beatInterval }
         }
-        print("[GameEngine] continueAfterAction: musicPos=\(String(format: "%.3f", musicTime))s beat=\(String(format: "%.1f", currentBeat)) targetBeat=\(String(format: "%.0f", targetBeat)) delay=\(String(format: "%.3f", delay))s gap=\(minBeatGap)")
-        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { [weak self] _ in
-            self?.presentNextAction()
+        nextBoundary = Date().addingTimeInterval(delay)
+        print("[GameEngine] scheduleFirstAction: delay=\(String(format: "%.3f", delay))s slotBeats=\(slotBeats)")
+        startGridPoll()
+    }
+
+    private func startGridPoll() {
+        gridTimer?.invalidate()
+        gridTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+            self?.poll()
         }
     }
 
-    // MARK: - Action Presentation
+    private func stopGridPoll() {
+        gridTimer?.invalidate()
+        gridTimer = nil
+    }
 
-    private func presentNextAction() {
-        guard gameState == .playing else {
-            print("[GameEngine] presentNextAction: skipped, gameState=\(gameState)")
+    /// Runs at 20 Hz. Fails a freeze the instant the player moves, and at each
+    /// grid boundary judges the current slot and presents the next cue.
+    private func poll() {
+        guard gameState == .playing else { stopGridPoll(); return }
+        let now = Date()
+
+        // Freeze breaks the instant the player moves, after the settle grace.
+        if currentAction == .freeze, let cutoff = freezeCutoff, now >= cutoff,
+           let stillCheck = isStillSince, stillCheck(cutoff) == false {
+            print("[GameEngine] FREEZE broken (player moved) → GAME OVER")
+            currentAction = nil
+            endGame()
             return
         }
 
-        // Check if the level is complete
+        // Grid boundary: judge the slot that just ended and open the next one.
+        if let boundary = nextBoundary, now >= boundary {
+            resolveAndPresent()
+            if gameState == .playing {
+                advanceBoundary()
+            }
+        }
+    }
+
+    /// Set nextBoundary to the next slot boundary on the music grid, one slot
+    /// ahead. Re-deriving from the music each slot keeps cues locked to the beat
+    /// and survives the track looping.
+    private func advanceBoundary() {
+        let beatInterval = currentLevelConfig.beatInterval
+        let musicTime = AudioManager.shared.musicCurrentTime
+        let currentBeat = musicTime / beatInterval
+        let nextSlot = (floor(currentBeat / slotBeats) + 1) * slotBeats
+        var delay = nextSlot * beatInterval - musicTime
+        // Keep each slot close to a full slotBeats so timing jitter never
+        // collapses two cues together.
+        if delay < slotBeats * beatInterval * 0.5 {
+            delay += slotBeats * beatInterval
+        }
+        nextBoundary = Date().addingTimeInterval(delay)
+    }
+
+    /// Judge the action from the slot that just ended, then present the next one.
+    /// A correct response during the slot clears currentAction, so an unanswered
+    /// non freeze action here is a miss. A freeze that survived the movement poll
+    /// was held still, so it scores.
+    private func resolveAndPresent() {
+        if let prev = currentAction {
+            if prev == .freeze {
+                score += 1
+                print("[GameEngine] FREEZE held: +1pt (total=\(score))")
+                currentAction = nil
+            } else {
+                print("[GameEngine] MISS: \(prev.rawValue) not answered in time → GAME OVER")
+                currentAction = nil
+                onActionTimeout?()
+                endGame()
+                return
+            }
+        }
+
         if actionsRemainingInLevel <= 0 {
-            timer?.invalidate()
+            stopGridPoll()
             currentAction = nil
-            print("[GameEngine] Level \(currentLevel) COMPLETE (all actions done). Total levels: \(mode.levels.count)")
+            print("[GameEngine] Level \(currentLevel) COMPLETE")
             gameState = .levelComplete
             return
         }
 
-        timer?.invalidate()
         currentAction = mode.actions.randomElement()
         actionStartTime = Date()
         actionsRemainingInLevel -= 1
-        print("[GameEngine] presentNextAction: player=\(currentPlayerIndex+1) level=\(currentLevel) remaining=\(actionsRemainingInLevel) action=\(currentAction?.rawValue ?? "nil") deadline=\(actionDeadline)s")
-
-        // Give the player actionDeadline seconds to respond
-        timer = Timer.scheduledTimer(withTimeInterval: actionDeadline, repeats: false) { [weak self] _ in
-            self?.handleTimeout()
+        if currentAction == .freeze {
+            // Give the player time to hear the "freeze" cue and come to a stop
+            // before stillness is enforced, so leftover motion from the previous
+            // action (a fast transition off a shake or lift) doesn't lose them
+            // before they even know it's a freeze. Up to about 0.6s, capped at
+            // half the slot so there's still a real stillness window.
+            let settle = min(0.6, slotBeats * currentLevelConfig.beatInterval * 0.5)
+            freezeCutoff = Date().addingTimeInterval(settle)
         }
+        print("[GameEngine] presentCue: player=\(currentPlayerIndex+1) level=\(currentLevel) remaining=\(actionsRemainingInLevel) action=\(currentAction?.rawValue ?? "nil")")
     }
 
     // MARK: - Player Input
@@ -223,10 +289,9 @@ class GameEngine: ObservableObject {
             return false
         }
 
-        timer?.invalidate()
-
         if action == expectedAction {
-            // Correct - 1 point per correct action
+            // Correct. Clear the action; the next cue arrives on the grid, not
+            // immediately, so the cadence stays steady no matter how fast you answer.
             score += 1
             print("[GameEngine] CORRECT: \(action.rawValue) +1pt (total=\(score)) remaining=\(actionsRemainingInLevel)")
             currentAction = nil
@@ -240,20 +305,12 @@ class GameEngine: ObservableObject {
         }
     }
 
-    // MARK: - Timeout & Game Over
-
-    private func handleTimeout() {
-        guard gameState == .playing else { return }
-
-        // Player didn't respond in time - game over
-        currentAction = nil
-        onActionTimeout?()
-        endGame()
-    }
+    // MARK: - Game Over
 
     private func endGame() {
         timer?.invalidate()
         timer = nil
+        stopGridPoll()
         currentAction = nil
 
         if isMultiplayer {
